@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Character Powers and Weaknesses</title>
+	<style>
+		table, th, td{ border: 1px solid black;}
+	</style>
+	<script>
+		window.onload = function(){
+			document.getElementById('addPower').style.display='none';
+			document.getElementById('addWeakness').style.display='none';
+		}
+	</script>
+</head>
+	<body>
+		<h1>Character Powers and Weaknesses</h1>
+		<p>
+			<button type="button" onclick="document.getElementById('addPower').style.display='block'">Add a Power to a Character</button>
+			<button type="button" onclick="document.getElementById('addPower').style.display='none'">Hide Form</button>
+		</p>
+		<form action = "#" method="post" id="addPower" style="width:50%">
+			<fieldset>
+				<legend>Character Powers</legend>
+				<div>
+					<p>Select Power
+						<select>
+							<option value="power_type where power_id = 1">power_type 1</option>
+							<option value="power_type where power_id = 2">power_type 2</option>
+							<option value="power_type where power_id = 3">power_type 3</option>
+						</select>
+					</p>
+				</div>
+				<div>
+					<p>Select Character
+						<select>
+							<option value="character_name where character_id = 1">Character 1</option>
+							<option value="character_name where character_id = 2">Character 2</option>
+							<option value="character_name where character_id = 3">Character 3</option>
+						</select>
+					</p>
+				</div>
+				<div>
+					<input type="submit" value="Submit">
+				</div>
+			</fieldset>
+		</form>
+		<h3>Here is the current character_powers table contents</h3>
+		<table style="width:50%">
+			<tr>
+				<th>id</th>
+				<th>power_id</th>
+				<th>character_id</th>
+				<th>delete a row</th>
+			</tr>
+			<tr>
+				<td>character_powers id 1</td>
+				<td>power_id 1</td>
+				<td>character_id 1</td>
+				<td><button style="width:100%">DELETE</button></td>
+			</tr>
+			<tr>
+				<td>character_powers id 2</td>
+				<td>power_id 2</td>
+				<td>character_id 2</td>
+				<td><button style="width:100%">DELETE</button></td>
+			</tr>
+			<tr>
+				<td>character_powers id 3</td>
+				<td>power_id 3</td>
+				<td>character_id 3</td>
+				<td><button style="width:100%">DELETE</button></td>
+			</tr>
+		</table>
+
+		<p>
+			<button type="button" onclick="document.getElementById('addWeakness').style.display='block'">Add a Weakness to a Character</button>
+			<button type="button" onclick="document.getElementById('addWeakness').style.display='none'">Hide Form</button>
+		</p>
+		<form action = "#" method="post" id="addWeakness" style="width:50%">
+			<fieldset>
+				<legend>Character Weaknesses</legend>
+				<div>
+					<p>Select Weakness
+						<select>
+							<option value="weakness_type where weakness_id = 1">weakness_type 1</option>
+							<option value="weakness_type where weakness_id = 2">weakness_type 2</option>
+							<option value="weakness_type where weakness_id = 3">weakness_type 3</option>
+						</select>
+					</p>
+				</div>
+				<div>
+					<p>Select Character
+						<select>
+							<option value="character_name where character_id = 1">Character 1</option>
+							<option value="character_name where character_id = 2">Character 2</option>
+							<option value="character_name where character_id = 3">Character 3</option>
+						</select>
+					</p>
+				</div>
+				<div>
+					<input type="submit" value="Submit">
+				</div>
+			</fieldset>
+		</form>
+		<h3>Here is the current character_weaknesses table contents</h3>
+		<table style="width:50%">
+			<tr>
+				<th>id</th>
+				<th>weakness_id</th>
+				<th>character_id</th>
+				<th>delete a row</th>
+			</tr>
+			<tr>
+				<td>character_weaknesses id 1</td>
+				<td>weakness_id 1</td>
+				<td>character_id 1</td>
+				<td><button style="width:100%">DELETE</button></td>
+			</tr>
+			<tr>
+				<td>character_weaknesses id 2</td>
+				<td>weakness_id 2</td>
+				<td>character_id 2</td>
+				<td><button style="width:100%">DELETE</button></td>
+			</tr>
+			<tr>
+				<td>character_weaknesses id 3</td>
+				<td>weakness_id 3</td>
+				<td>character_id 3</td>
+				<td><button style="width:100%">DELETE</button></td>
+			</tr>
+		</table>
+
+	</body>
+</html>
