@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Character Friendships and Rivalries</title>
+	<style>
+		table, th, td{ border: 1px solid black;}
+		ul{
+			list-style-type: none;
+			margin: 0;
+			padding: 0;
+			overflow: hidden;
+			background-color: #b0e0e6;
+		}
+		li{
+			float: left;
+		}
+		li a{
+			display: block;
+			color: black;
+			text-align: center;
+			padding: 1em;
+			text-decoration: none;
+		}
+		li a:hover{
+			background-color:white;
+		}
+	</style>
+	<script>
+		window.onload = function(){
+			document.getElementById('addFriendship').style.display='none';
+			document.getElementById('addRivalry').style.display='none';
+		}
+	</script>
+</head>
+	<body>
+		<div id="navbar">
+			<ul>
+				<li><a href="index.html">Home</a></li>
+				<li><a href="characters.html">Characters</a></li>
+				<li><a href="powers_weaknesses.html">Character Powers and Weaknesses</a><li>
+				<li><a href="character_relationships.html">Character Friendships and Rivalries</a><li>
+			</ul>
+		</div>
+		<h1>Character Friendships and Rivalries</h1>
+		<p>
+			<button type="button" onclick="document.getElementById('addFriendship').style.display='block'">Add a Friendship between Characters</button>
+			<button type="button" onclick="document.getElementById('addFriendship').style.display='none'">Hide Form</button>
+		</p>
+		<form action = "#" method="post" id="addFriendship" style="width:50%">
+			<fieldset>
+				<legend>Character Friendships</legend>
+				<div>
+					<p><span style="color:red">Note: To avoid using the same character and duplication, Character 1 id must be less than Character 2 id.<br>
+					     An error msg will occur if you submit and this condition is not met.</span><br>
+					     <span style="color:blue">This database DOES allow heroes and villains to be friends.</span></p>
+					<p>Select Character 1 
+						<select>
+							<option value="character_id where character_id = 1">Character id 1 (Batman)</option>
+							<option value="character_id where character_id = 2">Character id 2 (Robin)</option>
+							<option value="character_id where character_id = 3">Character id 3 (Green Arrow)</option>
+						</select>
+					</p>
+				</div>
+				<div>
+					<p>Select Character 2
+						<select>
+							<option value="character_name where character_id = 1">Character id 4 (Superman)</option>
+							<option value="character_name where character_id = 2">Character id 5 (Wonder Woman)</option>
+							<option value="character_name where character_id = 3">Character id 6 (Thor)</option>
+						</select>
+					</p>
+				</div>
+				<div>
+					<input type="submit" value="Submit">
+				</div>
+			</fieldset>
+		</form>
+		<h3>Here are the current contents of Friend Relationship</h3>
+		<table style="width:50%">
+			<tr>
+				<th>id</th>
+				<th>Friend1 ID</th>
+				<th>Friend2 ID</th>
+				<th>Delete a Row </th>
+			</tr>
+			<tr>
+				<td>1</td>
+				<td>character_id 1</td>
+				<td>character_id 2</td>
+				<td><button style="width:100%">DELETE</button></td>
+			</tr>
+			<tr>
+				<td>2</td>
+				<td>character_id 3</td>
+				<td>character_id 4</td>
+				<td><button style="width:100%">DELETE</button></td>
+			</tr>
+			<tr>
+				<td>3</td>
+				<td>character_id 5</td>
+				<td>character_id 6</td>
+				<td><button style="width:100%">DELETE</button></td>
+			</tr>
+		</table>
+
+		<p>
+			<button type="button" onclick="document.getElementById('addRivalry').style.display='block'">Add a Rivalry between Character</button>
+			<button type="button" onclick="document.getElementById('addRivalry').style.display='none'">Hide Form</button>
+		</p>
+		<form action = "#" method="post" id="addRivalry" style="width:50%">
+			<fieldset>
+				<legend>Rivalry</legend>
+				<div>
+					<p><span style="color:red">Note: To avoid using the same character and duplication, Character 1 id must be less than Character 2 id.<br>
+					     An error msg will occur if you submit and this condition is not met.</span><br>
+					     <span style="color:blue">This database DOES allow heroes to be rivals with other heroes and the same with villains.</span></p>
+					<p>Select Character 1
+						<select>
+							<option value="character_id where character_id = 1">Character id 1 (Batman)</option>
+							<option value="character_id where character_id = 2">Character id 2 (Robin)</option>
+							<option value="character_id where character_id = 3">Character id 3 (Loki)</option>
+						</select>
+					</p>
+				</div>
+				<div>
+					<p>Character 2
+						<select>
+							<option value="character_name where character_id = 7">Character 9 (The Joker)</option>
+							<option value="character_name where character_id = 8">Character 10 (Lex Luther)</option>
+							<option value="character_name where character_id = 9">Character 11 (Green Arrow)</option>
+						</select>
+					</p>
+				</div>
+				<div>
+					<input type="submit" value="Submit">
+				</div>
+			</fieldset>
+		</form>
+		<h3>Here are the current contents of Rival Relationship</h3>
+		<table style="width:50%">
+			<tr>
+				<th>id</th>
+				<th>Rival1 ID</th>
+				<th>Rival2 ID</th>
+				<th>Delete a Row</th>
+			</tr>
+			<tr>
+				<td>1</td>
+				<td>character_id 1</td>
+				<td>character_id 9</td>
+				<td><button style="width:100%">DELETE</button></td>
+			</tr>
+			<tr>
+				<td>character_weaknesses id 2</td>
+				<td>character_id 2</td>
+				<td>character_id 10</td>
+				<td><button style="width:100%">DELETE</button></td>
+			</tr>
+			<tr>
+				<td>character_weaknesses id 3</td>
+				<td>character_id 3</td>
+				<td>character_id 11</td>
+				<td><button style="width:100%">DELETE</button></td>
+			</tr>
+		</table>
+
+	</body>
+</html>
