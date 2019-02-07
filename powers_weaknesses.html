@@ -28,7 +28,9 @@
 	</style>
 	<script>
 		window.onload = function(){
+			document.getElementById('addPowerToCharacter').style.display='none';
 			document.getElementById('addPower').style.display='none';
+			document.getElementById('addWeaknessToCharacter').style.display='none';
 			document.getElementById('addWeakness').style.display='none';
 		}
 	</script>
@@ -42,12 +44,52 @@
 				<li><a href="character_relationships.html">Character Friendships and Rivalries</a><li>
 			</ul>
 		</div>
+
 		<h1>Character Powers and Weaknesses</h1>
 		<p>
-			<button type="button" onclick="document.getElementById('addPower').style.display='block'">Add a Power to a Character</button>
+			<button type="button" onclick="document.getElementById('addPower').style.display='block'">Add a Power</button>
 			<button type="button" onclick="document.getElementById('addPower').style.display='none'">Hide Form</button>
 		</p>
 		<form action = "#" method="post" id="addPower" style="width:50%">
+			<fieldset>
+				<legend>Power</legend>
+				<div>
+					Power type  <span style="color:red">(Limited to 100 letters) </span>
+                <input type="text" maxlength="100"><br>
+          Power magnitude
+          <span style="color:red">(Number from 1 - 10) </span><input type="number" min="1" step="1" max="10"><br>
+           <input type="submit" value="Submit">					
+				</div>
+			</fieldset>
+		</form>
+		<h3>Here are the current contents of Power</h3>
+		<table style="width:50%">
+			<tr>
+				<th>power_id</th>
+				<th>power_type</th>
+				<th>power_magnitude</th>
+			</tr>
+			<tr>
+				<td>1</td>
+				<td>x-ray vision</td>
+				<td>10</td>
+			</tr>
+			<tr>
+				<td>2</td>
+				<td>super strength</td>
+				<td>5</td>
+			</tr>
+			<tr>
+				<td>3</td>
+				<td>super strength</td>
+				<td>10</td>
+			</tr>
+		</table>
+		<p>
+			<button type="button" onclick="document.getElementById('addPowerToCharacter').style.display='block'">Add a Power to a Character</button>
+			<button type="button" onclick="document.getElementById('addPowerToCharacter').style.display='none'">Hide Form</button>
+		</p>
+		<form action = "#" method="post" id="addPowerToCharacter" style="width:50%">
 			<fieldset>
 				<legend>Character Powers</legend>
 				<div>
@@ -73,13 +115,13 @@
 				</div>
 			</fieldset>
 		</form>
-		<h3>Here is the current character_powers table contents</h3>
+		<h3>Here are the current contents of Character Powers</h3>
 		<table style="width:50%">
 			<tr>
 				<th>id</th>
-				<th>power_id</th>
-				<th>character_id</th>
-				<th>delete a row</th>
+				<th>Power ID</th>
+				<th>Character_ID</th>
+				<th>Delete a Row</th>
 			</tr>
 			<tr>
 				<td>character_powers id 1</td>
@@ -102,10 +144,50 @@
 		</table>
 
 		<p>
-			<button type="button" onclick="document.getElementById('addWeakness').style.display='block'">Add a Weakness to a Character</button>
+			<button type="button" onclick="document.getElementById('addWeakness').style.display='block'">Add a Weakness</button>
 			<button type="button" onclick="document.getElementById('addWeakness').style.display='none'">Hide Form</button>
 		</p>
 		<form action = "#" method="post" id="addWeakness" style="width:50%">
+			<fieldset>
+				<legend>Weakness</legend>
+				<div>
+					Weakness type  <span style="color:red">(Limited to 100 letters) </span>
+                <input type="text" maxlength="100"><br>
+          Weakness magnitude
+          <span style="color:red">(Number from 1 - 10) </span><input type="number" min="1" step="1" max="10"><br>
+           <input type="submit" value="Submit">					
+				</div>
+			</fieldset>
+		</form>
+		<h3>Here are the current contents of Weakness</h3>
+		<table style="width:50%">
+			<tr>
+				<th>Weakness Id</th>
+				<th>Weakness Type</th>
+				<th>Weakness Magnitude</th>
+			</tr>
+			<tr>
+				<td>1</td>
+				<td>Kryptonite</td>
+				<td>10</td>
+			</tr>
+			<tr>
+				<td>2</td>
+				<td>Womder Woman's Lasso</td>
+				<td>10</td>
+			</tr>
+			<tr>
+				<td>3</td>
+				<td>Thor letting go of Hammer</td>
+				<td>10</td>
+			</tr>
+		</table>
+
+		<p>
+			<button type="button" onclick="document.getElementById('addWeaknessToCharacter').style.display='block'">Add a Weakness to a Character</button>
+			<button type="button" onclick="document.getElementById('addWeaknessToCharacter').style.display='none'">Hide Form</button>
+		</p>
+		<form action = "#" method="post" id="addWeaknessToCharacter" style="width:50%">
 			<fieldset>
 				<legend>Character Weaknesses</legend>
 				<div>
@@ -131,13 +213,13 @@
 				</div>
 			</fieldset>
 		</form>
-		<h3>Here is the current character_weaknesses table contents</h3>
+		<h3>Here are the current contents of Character Weakness</h3>
 		<table style="width:50%">
 			<tr>
 				<th>id</th>
-				<th>weakness_id</th>
-				<th>character_id</th>
-				<th>delete a row</th>
+				<th>Weakness Id</th>
+				<th>Character Id</th>
+				<th>Delete a Row</th>
 			</tr>
 			<tr>
 				<td>character_weaknesses id 1</td>
