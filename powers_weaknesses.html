@@ -5,6 +5,26 @@
 	<title>Character Powers and Weaknesses</title>
 	<style>
 		table, th, td{ border: 1px solid black;}
+		ul{
+			list-style-type: none;
+			margin: 0;
+			padding: 0;
+			overflow: hidden;
+			background-color: #b0e0e6;
+		}
+		li{
+			float: left;
+		}
+		li a{
+			display: block;
+			color: black;
+			text-align: center;
+			padding: 1em;
+			text-decoration: none;
+		}
+		li a:hover{
+			background-color:white;
+		}
 	</style>
 	<script>
 		window.onload = function(){
@@ -14,6 +34,14 @@
 	</script>
 </head>
 	<body>
+		<div id="navbar">
+			<ul>
+				<li><a href="index.html">Home</a></li>
+				<li><a href="characters.html">Characters</a></li>
+				<li><a href="powers_weaknesses.html">Character Powers and Weaknesses</a><li>
+				<li><a href="character_relationships.html">Character Friendships and Rivalries</a><li>
+			</ul>
+		</div>
 		<h1>Character Powers and Weaknesses</h1>
 		<p>
 			<button type="button" onclick="document.getElementById('addPower').style.display='block'">Add a Power to a Character</button>
