@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Characters, Equipment and Cities</title>
+    <style>
+        table, th, td{border: 1px solid black;}
+    </style>
+    <script>
+		window.onload = function(){
+			document.getElementById('addCharacter').style.display='none';
+			document.getElementById('addEquipment').style.display='none';
+            document.getElementById('addCity').style.display='none';
+		}
+	</script>
+</head>
+    <body>
+        <h1>Characters, Equipment, and Cities</h1>
+        <p>
+            <button type="button" onclick="document.getElementById('addCharacter').style.display='block'">Add a Character to the Database</button>
+            <button type="button" onclick="document.getElementById('addCharacter').style.display='none'">Hide Form</button>
+        </p>
+        <form action="#" method="post" id="addCharacter" style="width:50%">
+            <fieldset>
+                <legend>Characters</legend>
+                Character name:
+                <input type="text"><br>
+                Real first name:
+                <input type="text"><br>
+                Real last name:
+                <input type="text"><br>
+                Select City:
+                <select>
+                    <option value="city where city_id = 1">city_id_1</option>
+                    <option value="city where city_id = 2">city_id_2</option>
+                    <option value="city where city_id = 3">city_id_3</option>
+                </select><br>
+                Select Role:
+                <select>
+                    <option value="TRUE">Hero</option>
+                    <option value="FALSE">Villain</option>
+                </select><br>
+                Select Mentor:
+                <select>
+                    <option value="character where character_id = 1">city_id_1</option>
+                    <option value="character where character_id = 2">city_id_2</option>
+                    <option value="character where character_id = 3">city_id_3</option>
+                </select><br>
+                <input type="submit" value="Submit">
+            </fieldset>
+        </form>
+        <h3>Here are the current contents of Character</h3>
+        <table style="width:50%">
+            <tr>
+                <th>id</th>
+                <th>Alter Ego</th>
+                <th>Real First Name</th>
+                <th>Real Last Name</th>
+                <th>City ID</th>
+                <th>Role</th>
+                <th>Mentor ID</th>
+                <th>Delete a Row</th>
+                <th>Update a Row</th>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>Superman</td>
+                <td>Clark</td>
+                <td>Kent</td>
+                <td>6</td>
+                <td>Hero</td>
+                <td>N/A</td>
+                <td><button style="width:100%">DELETE</td>
+                <td><button style="width:100%" onclick="document.getElementById('addCharacter').style.display='block'">UPDATE</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Magneto</td>
+                <td>Max</td>
+                <td>Eisenhardt</td>
+                <td>5</td>
+                <td>Villain</td>
+                <td>N/A</td>
+                <td><button style="width:100%">DELETE</td>
+                <td><button style="width:100%" onclick="document.getElementById('addCharacter').style.display='block'">UPDATE</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>Batman</td>
+                <td>Bruce</td>
+                <td>Wayne</td>
+                <td>1</td>
+                <td>Villain</td>
+                <td>N/A</td>
+                <td><button style="width:100%">DELETE</td>
+                <td><button style="width:100%" onclick="document.getElementById('addCharacter').style.display='block'">UPDATE</td>
+            </tr>
+        </table>
+
+        <p>
+            <button type="button" onclick="document.getElementById('addEquipment').style.display='block'">Add Equipment to the Database</button>
+            <button type="button" onclick="document.getElementById('addEquipment').style.display='none'">Hide Form</button>
+        </p>
+        <form action="#" method="post" id="addEquipment" style="width:50%">
+            <fieldset>
+                <legend>Equipment</legend>
+                Equipment name:
+                <input type="text"><br>
+                Description (type of equipment)
+                <input type="text"><br>
+                Material
+                <input type="text"><br>
+                Owning character:
+                <select>
+                    <option value="character where character_id = 1">city_id_1</option>
+                    <option value="character where character_id = 2">city_id_2</option>
+                    <option value="character where character_id = 3">city_id_3</option>
+                </select><br>
+                <input type="submit" value="Submit">
+            </fieldset>
+        </form>
+        <h3>Here are the current contents of Equipment</h3>
+        <table>
+            <tr>
+                <th>id</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Material</th>
+                <th>Owned by</th>
+                <th>Delete a Row</th>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>Thor's Hammer</td>
+                <td>Hammer</td>
+                <td>Iron</td>
+                <td>5</td>
+                <td><button style="width:100%">DELETE</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Lasso of Truth</td>
+                <td>Lasso</td>
+                <td>Gold</td>
+                <td>7</td>
+                <td><button style="width:100%">DELETE</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>Wolverine's Skeleton</td>
+                <td>Endoskeleton</td>
+                <td>Adamantium</td>
+                <td>11</td>
+                <td><button style="width:100%">DELETE</td>
+            </tr>
+        </table>
+
+        <p>
+            <button type="button" onclick="document.getElementById('addCity').style.display='block'">Add Equipment to the Database</button>
+            <button type="button" onclick="document.getElementById('addCity').style.display='none'">Hide Form</button>
+        </p>
+        <form action="#" method="post" id="addCity" style="width:50%">
+            <fieldset>
+                <legend>Cities</legend>
+                City name:
+                <input type="text">
+                Real or fictional:
+                <select>
+                    <option value="TRUE">Hero</option>
+                    <option value="FALSE">Villain</option>
+                </select><br>
+                <input type="submit" value="Submit">
+            </fieldset>
+        </form>
+        <h3>Here are the current contents of City</h3>
+        <table>
+            <tr>
+                <th>id</th>
+                <th>Name</th>
+                <th>Real or Fictional</th>
+                <th>Delete a Row</th>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>Gotham</td>
+                <td>Fictional</td>
+                <td><button style="width:100%">DELETE</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>New York City</td>
+                <td>Real</td>
+                <td><button style="width:100%">DELETE</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>Central City</td>
+                <td>Fictional</td>
+                <td><button style="width:100%">DELETE</td>
+            </tr>
+        </table>
+    </body>
+<html>
