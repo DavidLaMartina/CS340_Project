@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Character Friendships and Rivalries</title>
+	<title>Friendships and Rivalries</title>
 	<style>
 		table, th, td{ border: 1px solid black;}
 		ul{
@@ -42,7 +42,7 @@
 				<li><a href="character_relationships.html">Friendships and Rivalries</a><li>
 			</ul>
 		</div>
-		<h1>Character Friendships and Rivalries</h1>
+		<h1>Friendships and Rivalries</h1>
 		<p>
 			<button type="button" onclick="document.getElementById('addFriendship').style.display='block'">Add a Friendship between Characters</button>
 			<button type="button" onclick="document.getElementById('addFriendship').style.display='none'">Hide Form</button>
@@ -54,7 +54,7 @@
 					<p><span style="color:red">Note: To avoid using the same character and duplication, Character 1 id must be less than Character 2 id.<br>
 					     An error msg will occur if you submit and this condition is not met.</span><br>
 					     <span style="color:blue">This database DOES allow heroes and villains to be friends.</span></p>
-					<p>Select Character 1
+					<p>Select Character 1 
 						<select>
 							<option value="character_id where character_id = 1">Character id 1 (Batman)</option>
 							<option value="character_id where character_id = 2">Character id 2 (Robin)</option>
@@ -80,26 +80,26 @@
 		<table style="width:50%">
 			<tr>
 				<th>id</th>
-				<th>Friend1 ID</th>
-				<th>Friend2 ID</th>
+				<th>Friend 1</th>
+				<th>Friend 2</th>
 				<th>Delete a Row </th>
 			</tr>
 			<tr>
 				<td>1</td>
-				<td>character_id 1</td>
-				<td>character_id 2</td>
+				<td>Batman</td>
+				<td>Robin</td>
 				<td><button style="width:100%">DELETE</button></td>
 			</tr>
 			<tr>
 				<td>2</td>
-				<td>character_id 3</td>
-				<td>character_id 4</td>
+				<td>Thor</td>
+				<td>Superman</td>
 				<td><button style="width:100%">DELETE</button></td>
 			</tr>
 			<tr>
 				<td>3</td>
-				<td>character_id 5</td>
-				<td>character_id 6</td>
+				<td>Lex Luthor</td>
+				<td>Al Bizarro</td>
 				<td><button style="width:100%">DELETE</button></td>
 			</tr>
 		</table>
@@ -124,7 +124,7 @@
 					</p>
 				</div>
 				<div>
-					<p>Character 2
+					<p>Select Character 2
 						<select>
 							<option value="character_name where character_id = 7">Character 9 (The Joker)</option>
 							<option value="character_name where character_id = 8">Character 10 (Lex Luther)</option>
@@ -141,26 +141,26 @@
 		<table style="width:50%">
 			<tr>
 				<th>id</th>
-				<th>Rival1 ID</th>
-				<th>Rival2 ID</th>
+				<th>Rival 1</th>
+				<th>Rival 2</th>
 				<th>Delete a Row</th>
 			</tr>
 			<tr>
 				<td>1</td>
-				<td>character_id 1</td>
-				<td>character_id 9</td>
+				<td>Superman</td>
+				<td>Lex Luthor</td>
 				<td><button style="width:100%">DELETE</button></td>
 			</tr>
 			<tr>
-				<td>character_weaknesses id 2</td>
-				<td>character_id 2</td>
-				<td>character_id 10</td>
+				<td>2</td>
+				<td>Loki</td>
+				<td>Thor</td>
 				<td><button style="width:100%">DELETE</button></td>
 			</tr>
 			<tr>
-				<td>character_weaknesses id 3</td>
-				<td>character_id 3</td>
-				<td>character_id 11</td>
+				<td>3</td>
+				<td>Batman</td>
+				<td>The Joker</td>
 				<td><button style="width:100%">DELETE</button></td>
 			</tr>
 		</table>
