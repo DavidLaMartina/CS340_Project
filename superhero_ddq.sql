@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: classmysql.engr.oregonstate.edu:3306
--- Generation Time: Feb 06, 2019 at 10:04 AM
+-- Generation Time: Feb 07, 2019 at 03:26 PM
 -- Server version: 10.1.22-MariaDB
 -- PHP Version: 7.0.33
 
@@ -55,7 +55,8 @@ INSERT INTO `Character` (`character_id`, `character_name`, `real_first_name`, `r
 (8, 'Lex Luthor', NULL, NULL, 2, 0, NULL),
 (9, 'Superman', 'Clark', 'Kent', 1, 1, NULL),
 (10, 'The Joker', 'Jack', 'Napier', 1, 0, NULL),
-(11, 'Bob the Goon', NULL, NULL, 1, 0, 10);
+(11, 'Bob the Goon', NULL, NULL, 1, 0, 10),
+(12, 'Wolferine', 'James', 'Howlett', NULL, 1, NULL);
 
 -- --------------------------------------------------------
 
@@ -148,7 +149,9 @@ CREATE TABLE `Equipment` (
 
 INSERT INTO `Equipment` (`equipment_id`, `equipment_name`, `description`, `material`, `character_id`) VALUES
 (1, 'Batmobile', 'Batman\'s heavily armored and weaponized car', 'steel', 1),
-(2, 'Truth Lasso', 'Lasso makes people tell the truth', NULL, 7);
+(2, 'Truth Lasso', 'Lasso makes people tell the truth', 'Gold', 7),
+(3, 'Thor\'s Hammer', 'Hammer', 'Iron', 6),
+(4, 'Wolverine\'s Skeleton', 'Endoskeleton', 'Adamantium', 12);
 
 -- --------------------------------------------------------
 
@@ -317,7 +320,7 @@ ALTER TABLE `Weakness`
 -- AUTO_INCREMENT for table `Character`
 --
 ALTER TABLE `Character`
-  MODIFY `character_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `character_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `character_powers`
@@ -341,7 +344,7 @@ ALTER TABLE `City`
 -- AUTO_INCREMENT for table `Equipment`
 --
 ALTER TABLE `Equipment`
-  MODIFY `equipment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `equipment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `friend_relationship`
@@ -356,6 +359,18 @@ ALTER TABLE `Power`
   MODIFY `power_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
+-- AUTO_INCREMENT for table `rival_relationship`
+--
+ALTER TABLE `rival_relationship`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `Weakness`
+--
+ALTER TABLE `Weakness`
+  MODIFY `weakness_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- Constraints for dumped tables
 --
 
@@ -365,6 +380,40 @@ ALTER TABLE `Power`
 ALTER TABLE `Character`
   ADD CONSTRAINT `fk_Character_Character` FOREIGN KEY (`mentor_id`) REFERENCES `Character` (`character_id`) ON DELETE SET NULL ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_Character_City` FOREIGN KEY (`city`) REFERENCES `City` (`city_id`) ON DELETE SET NULL ON UPDATE CASCADE;
+
+--
+-- Constraints for table `character_powers`
+--
+ALTER TABLE `character_powers`
+  ADD CONSTRAINT `fk_character_powers_Character` FOREIGN KEY (`character_id`) REFERENCES `Character` (`character_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_character_powers_Power` FOREIGN KEY (`power_id`) REFERENCES `Power` (`power_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `character_weaknesses`
+--
+ALTER TABLE `character_weaknesses`
+  ADD CONSTRAINT `fk_character_weaknesses_Character` FOREIGN KEY (`character_id`) REFERENCES `Character` (`character_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_character_weaknesses_Weakness` FOREIGN KEY (`weakness_id`) REFERENCES `Weakness` (`weakness_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `Equipment`
+--
+ALTER TABLE `Equipment`
+  ADD CONSTRAINT `fk_Equipment_Character` FOREIGN KEY (`character_id`) REFERENCES `Character` (`character_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `friend_relationship`
+--
+ALTER TABLE `friend_relationship`
+  ADD CONSTRAINT `fk_friend_relationship1_Character` FOREIGN KEY (`friend2_id`) REFERENCES `Character` (`character_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_friend_relationship_Character` FOREIGN KEY (`friend1_id`) REFERENCES `Character` (`character_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `rival_relationship`
+--
+ALTER TABLE `rival_relationship`
+  ADD CONSTRAINT `fk_rival_relationship1_Character` FOREIGN KEY (`rival2_id`) REFERENCES `Character` (`character_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_rival_relationship_Character` FOREIGN KEY (`rival1_id`) REFERENCES `Character` (`character_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 SET FOREIGN_KEY_CHECKS=1;
 COMMIT;
 
