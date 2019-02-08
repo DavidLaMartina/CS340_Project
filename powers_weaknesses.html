@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Character Powers and Weaknesses</title>
+	<title>Powers and Weaknesses</title>
 	<style>
 		table, th, td{ border: 1px solid black;}
 		ul{
@@ -45,7 +45,7 @@
 			</ul>
 		</div>
 
-		<h1>Character Powers and Weaknesses</h1>
+		<h1>Powers and Weaknesses</h1>
 		<p>
 			<button type="button" onclick="document.getElementById('addPower').style.display='block'">Add a Power</button>
 			<button type="button" onclick="document.getElementById('addPower').style.display='none'">Hide Form</button>
@@ -55,19 +55,19 @@
 				<legend>Power</legend>
 				<div>
 					Power type  <span style="color:red">(Limited to 100 letters) </span>
-                <input type="text" maxlength="100"><br>
+                <input type="text" maxlength="100" required><br>
           Power magnitude
           <span style="color:red">(Number from 1 - 10) </span><input type="number" min="1" step="1" max="10"><br>
-           <input type="submit" value="Submit">
+           <input type="submit" value="Submit">					
 				</div>
 			</fieldset>
 		</form>
 		<h3>Here are the current contents of Power</h3>
 		<table style="width:50%">
 			<tr>
-				<th>power_id</th>
-				<th>power_type</th>
-				<th>power_magnitude</th>
+				<th>Power ID</th>
+				<th>Power Type</th>
+				<th>Power Magnitude</th>
 			</tr>
 			<tr>
 				<td>1</td>
@@ -95,18 +95,18 @@
 				<div>
 					<p>Select Power
 						<select>
-							<option value="power_type where power_id = 1">power_type 1</option>
-							<option value="power_type where power_id = 2">power_type 2</option>
-							<option value="power_type where power_id = 3">power_type 3</option>
+							<option value="power_type where power_id = 1">power_type 1 (x-ray vision)</option>
+							<option value="power_type where power_id = 2">power_type 2 (super strength)</option>
+							<option value="power_type where power_id = 3">power_type 3 (flight)</option>
 						</select>
 					</p>
 				</div>
 				<div>
 					<p>Select Character
 						<select>
-							<option value="character_name where character_id = 1">Character 1</option>
-							<option value="character_name where character_id = 2">Character 2</option>
-							<option value="character_name where character_id = 3">Character 3</option>
+							<option value="character_name where character_id = 1">character_id 1 (Batman)</option>
+							<option value="character_name where character_id = 2">character_id 2 (Superman)</option>
+							<option value="character_name where character_id = 3">character_id 3 (Thor)</option>
 						</select>
 					</p>
 				</div>
@@ -119,26 +119,26 @@
 		<table style="width:50%">
 			<tr>
 				<th>id</th>
-				<th>Power ID</th>
-				<th>Character_ID</th>
+				<th>Power</th>
+				<th>Character</th>
 				<th>Delete a Row</th>
 			</tr>
 			<tr>
-				<td>character_powers id 1</td>
-				<td>power_id 1</td>
-				<td>character_id 1</td>
+				<td>1</td>
+				<td>X-ray Vision</td>
+				<td>Superman</td>
 				<td><button style="width:100%">DELETE</button></td>
 			</tr>
 			<tr>
-				<td>character_powers id 2</td>
-				<td>power_id 2</td>
-				<td>character_id 2</td>
+				<td>2</td>
+				<td>Super Speed</td>
+				<td>Flash</td>
 				<td><button style="width:100%">DELETE</button></td>
 			</tr>
 			<tr>
-				<td>character_powers id 3</td>
-				<td>power_id 3</td>
-				<td>character_id 3</td>
+				<td>3</td>
+				<td>Flight</td>
+				<td>Superman</td>
 				<td><button style="width:100%">DELETE</button></td>
 			</tr>
 		</table>
@@ -152,14 +152,14 @@
 				<legend>Weakness</legend>
 				<div>
 					Weakness type  <span style="color:red">(Limited to 100 letters) </span>
-                <input type="text" maxlength="100"><br>
+                <input type="text" maxlength="100" required><br>
           Weakness magnitude
           <span style="color:red">(Number from 1 - 10) </span><input type="number" min="1" step="1" max="10"><br>
-           <input type="submit" value="Submit">
+           <input type="submit" value="Submit">					
 				</div>
 			</fieldset>
 		</form>
-		<h3>Here are the current contents of Weaknesses</h3>
+		<h3>Here are the current contents of Weakness</h3>
 		<table style="width:50%">
 			<tr>
 				<th>Weakness Id</th>
@@ -193,18 +193,18 @@
 				<div>
 					<p>Select Weakness
 						<select>
-							<option value="weakness_type where weakness_id = 1">weakness_type 1</option>
-							<option value="weakness_type where weakness_id = 2">weakness_type 2</option>
-							<option value="weakness_type where weakness_id = 3">weakness_type 3</option>
+							<option value="weakness_type where weakness_id = 1">weakness_type 1 (Krpytonite)</option>
+							<option value="weakness_type where weakness_id = 2">weakness_type 2 (Noise Pollution)</option>
+							<option value="weakness_type where weakness_id = 3">weakness_type 3 (Muramasa Blade) (</option>
 						</select>
 					</p>
 				</div>
 				<div>
 					<p>Select Character
 						<select>
-							<option value="character_name where character_id = 1">Character 1</option>
-							<option value="character_name where character_id = 2">Character 2</option>
-							<option value="character_name where character_id = 3">Character 3</option>
+							<option value="character_name where character_id = 1">Character 1 (Superman)</option>
+							<option value="character_name where character_id = 2">Character 2 (Dare Devil)</option>
+							<option value="character_name where character_id = 3">Character 3 (Wolferine)</option>
 						</select>
 					</p>
 				</div>
@@ -213,30 +213,30 @@
 				</div>
 			</fieldset>
 		</form>
-		<h3>Here are the current contents of Character Weakness</h3>
+		<h3>Here are the current contents of Character Weaknesses</h3>
 		<table style="width:50%">
 			<tr>
 				<th>id</th>
-				<th>Weakness Id</th>
-				<th>Character Id</th>
+				<th>Weakness</th>
+				<th>Character</th>
 				<th>Delete a Row</th>
 			</tr>
 			<tr>
 				<td>character_weaknesses id 1</td>
-				<td>weakness_id 1</td>
-				<td>character_id 1</td>
+				<td>Krpytonite</td>
+				<td>Superman</td>
 				<td><button style="width:100%">DELETE</button></td>
 			</tr>
 			<tr>
 				<td>character_weaknesses id 2</td>
-				<td>weakness_id 2</td>
-				<td>character_id 2</td>
+				<td>Noise Pollution</td>
+				<td>Dare Devil</td>
 				<td><button style="width:100%">DELETE</button></td>
 			</tr>
 			<tr>
 				<td>character_weaknesses id 3</td>
-				<td>weakness_id 3</td>
-				<td>character_id 3</td>
+				<td>Muramasa Blade</td>
+				<td>Wolverine</td>
 				<td><button style="width:100%">DELETE</button></td>
 			</tr>
 		</table>
