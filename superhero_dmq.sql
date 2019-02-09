@@ -68,14 +68,14 @@ INSERT INTO Power (power_type, power_magnitude) VALUES (:power_type_input,:magni
 
 -- Query to show the content of the Power table
 
-SELECT * from Power;
+SELECT * FROM Power;
 
 -- Query to display the current character_power table
 
 SELECT * FROM character_powers;
 
 -- Query to insert a row into the character_powers table
-INSERT INTO character_powers (power_id, character_id) VALUES (:power_id_input, character_id_input);
+INSERT INTO character_powers (power_id, character_id) VALUES (:power_id_input, :character_id_input);
 
 -- Query to delete a row from the characters_power table
 
@@ -83,18 +83,18 @@ DELETE FROM character_powers WHERE id = :id_num_of_row_to_delete;
 
 -- Query to add a weakness to the Weakness table
 
-INSERT INTO Weakness(weakness_type, weakness_magnitude) VALUES (:weakness_type_input, : magnitude_input);
+INSERT INTO Weakness(weakness_type, weakness_magnitude) VALUES (:weakness_type_input, :magnitude_input);
 
 -- Query to show the content of the Weakness table
 
-SELECT * from Weakness;
+SELECT * FROM Weakness;
 
 -- Query to add to the character_weaknesses table
 INSERT INTO character_weaknesses (weakness_id, character_id) VALUES (:input_weakness_id,:input_character_id);
 
 -- Query to show the content of the character_weaknesses table
 
-SELECT * from character_weaknesses;
+SELECT * FROM character_weaknesses;
 
 -- Query to delete a row from the character_weaknesses table
 
