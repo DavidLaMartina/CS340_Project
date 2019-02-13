@@ -51,9 +51,9 @@ CREATE TABLE `Power` (
 ) ;
 
 CREATE TABLE Weakness (
-	weakness_id int NOT NULL AUTO_INCREMENT,
-	weakness_type varchar(100) NOT NULL,
-    weakness_magnitude tinyInt CHECK(weakness_magnitude > 0 AND weakness_magnitude < 11),
+  weakness_id int NOT NULL AUTO_INCREMENT,
+  weakness_type varchar(100) NOT NULL,
+  weakness_magnitude tinyInt CHECK(weakness_magnitude > 0 AND weakness_magnitude < 11),
   PRIMARY KEY (`weakness_id`)
 
 );
