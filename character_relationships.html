@@ -31,6 +31,30 @@
 			document.getElementById('addFriendship').style.display='none';
 			document.getElementById('addRivalry').style.display='none';
 		}
+		function friendshipFunc(){
+            document.getElementById('addFriendship').style.display='block';
+            var change = document.getElementById('toggle1');
+            if(change.innerHTML == "Add a Friendship between Characters")
+            {
+                change.innerHTML = "Hide Form";
+            }
+            else{
+                change.innerHTML = "Add a Friendship between Characters";
+                document.getElementById('addFriendship').style.display='none';
+            }
+        }
+        function rivalFunc(){
+            document.getElementById('addRivalry').style.display='block';
+            var change = document.getElementById('toggle2');
+            if(change.innerHTML == "Add a Rivalry between Characters")
+            {
+                change.innerHTML = "Hide Form";
+            }
+            else{
+                change.innerHTML = "Add a Rivalry between Characters";
+                document.getElementById('addRivalry').style.display='none';
+            }
+        }
 	</script>
 </head>
 	<body>
@@ -44,8 +68,7 @@
 		</div>
 		<h1>Friendships and Rivalries</h1>
 		<p>
-			<button type="button" onclick="document.getElementById('addFriendship').style.display='block'">Add a Friendship between Characters</button>
-			<button type="button" onclick="document.getElementById('addFriendship').style.display='none'">Hide Form</button>
+			<button type="button" id='toggle1' onclick="friendshipFunc()">Add a Friendship between Characters</button>
 		</p>
 		<form action = "#" method="post" id="addFriendship" style="width:50%">
 			<fieldset>
@@ -105,8 +128,7 @@
 		</table>
 
 		<p>
-			<button type="button" onclick="document.getElementById('addRivalry').style.display='block'">Add a Rivalry between Character</button>
-			<button type="button" onclick="document.getElementById('addRivalry').style.display='none'">Hide Form</button>
+			<button type="button" id='toggle2' onclick="rivalFunc()">Add a Rivalry between Characters</button>
 		</p>
 		<form action = "#" method="post" id="addRivalry" style="width:50%">
 			<fieldset>

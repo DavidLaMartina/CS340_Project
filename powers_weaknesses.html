@@ -33,6 +33,57 @@
 			document.getElementById('addWeaknessToCharacter').style.display='none';
 			document.getElementById('addWeakness').style.display='none';
 		}
+		//Reference for the following 3 functions is:
+        // https://stackoverflow.com/questions/28620819/how-to-change-button-text-on-click-using-javascript
+        // https://www.w3schools.com/howto/howto_js_toggle_hide_show.asp
+        function powerFunc(){
+            document.getElementById('addPower').style.display='block';
+            var change = document.getElementById('toggle1');
+            if(change.innerHTML == "Add a Power")
+            {
+                change.innerHTML = "Hide Form";
+            }
+            else{
+                change.innerHTML = "Add a Power";
+                document.getElementById('addPower').style.display='none';
+            }
+        }
+        function powerToCharacterFunc(){
+            document.getElementById('addPowerToCharacter').style.display='block';
+            var change = document.getElementById('toggle2');
+            if(change.innerHTML == "Add a Power to a Character")
+            {
+                change.innerHTML = "Hide Form";
+            }
+            else{
+                change.innerHTML = "Add a Power to a Character";
+                document.getElementById('addPowerToCharacter').style.display='none';
+            }
+        }
+        function weaknessFunc(){
+            document.getElementById('addWeakness').style.display='block';
+            var change = document.getElementById('toggle3');
+            if(change.innerHTML == "Add a Weakness")
+            {
+                change.innerHTML = "Hide Form";
+            }
+            else{
+                change.innerHTML = "Add a Weakness";
+                document.getElementById('addWeakness').style.display='none';
+            }
+        }
+        function weaknessToCharacterFunc(){
+            document.getElementById('addWeaknessToCharacter').style.display='block';
+            var change = document.getElementById('toggle4');
+            if(change.innerHTML == "Add a Weakness to a Character")
+            {
+                change.innerHTML = "Hide Form";
+            }
+            else{
+                change.innerHTML = "Add a Weakness to a Character";
+                document.getElementById('addWeaknessToCharacter').style.display='none';
+            }
+        }
 	</script>
 </head>
 	<body>
@@ -47,8 +98,7 @@
 
 		<h1>Powers and Weaknesses</h1>
 		<p>
-			<button type="button" onclick="document.getElementById('addPower').style.display='block'">Add a Power</button>
-			<button type="button" onclick="document.getElementById('addPower').style.display='none'">Hide Form</button>
+			<button type="button" id='toggle1' onclick="powerFunc()">Add a Power</button>
 		</p>
 		<form action = "#" method="post" id="addPower" style="width:50%">
 			<fieldset>
@@ -86,8 +136,7 @@
 			</tr>
 		</table>
 		<p>
-			<button type="button" onclick="document.getElementById('addPowerToCharacter').style.display='block'">Add a Power to a Character</button>
-			<button type="button" onclick="document.getElementById('addPowerToCharacter').style.display='none'">Hide Form</button>
+			<button type="button" id='toggle2' onclick="powerToCharacterFunc()">Add a Power to a Character</button>
 		</p>
 		<form action = "#" method="post" id="addPowerToCharacter" style="width:50%">
 			<fieldset>
@@ -144,8 +193,7 @@
 		</table>
 
 		<p>
-			<button type="button" onclick="document.getElementById('addWeakness').style.display='block'">Add a Weakness</button>
-			<button type="button" onclick="document.getElementById('addWeakness').style.display='none'">Hide Form</button>
+			<button type="button" id='toggle3' onclick="weaknessFunc()">Add a Weakness</button>
 		</p>
 		<form action = "#" method="post" id="addWeakness" style="width:50%">
 			<fieldset>
@@ -184,8 +232,7 @@
 		</table>
 
 		<p>
-			<button type="button" onclick="document.getElementById('addWeaknessToCharacter').style.display='block'">Add a Weakness to a Character</button>
-			<button type="button" onclick="document.getElementById('addWeaknessToCharacter').style.display='none'">Hide Form</button>
+			<button type="button" id='toggle4' onclick="weaknessToCharacterFunc()">Add a Weakness to a Character</button>
 		</p>
 		<form action = "#" method="post" id="addWeaknessToCharacter" style="width:50%">
 			<fieldset>
