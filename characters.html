@@ -4,49 +4,88 @@
     <meta charset="utf-8">
     <title>Characters, Equipment and Cities</title>
     <style>
-		table, th, td{ border: 1px solid black;}
-		ul{
-			list-style-type: none;
-			margin: 0;
-			padding: 0;
-			overflow: hidden;
-			background-color: #b0e0e6;
-		}
-		li{
-			float: left;
-		}
-		li a{
-			display: block;
-			color: black;
-			text-align: center;
-			padding: 1em;
-			text-decoration: none;
-		}
-		li a:hover{
-			background-color:white;
-		}
-	</style>
+        table, th, td{ border: 1px solid black;}
+        ul{
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #b0e0e6;
+        }
+        li{
+            float: left;
+        }
+        li a{
+            display: block;
+            color: black;
+            text-align: center;
+            padding: 1em;
+            text-decoration: none;
+        }
+        li a:hover{
+            background-color:white;
+        }
+    </style>
     <script>
-		window.onload = function(){
-			document.getElementById('addCharacter').style.display='none';
-			document.getElementById('addEquipment').style.display='none';
+        window.onload = function(){
+            document.getElementById('addCharacter').style.display='none';
+            document.getElementById('addEquipment').style.display='none';
             document.getElementById('addCity').style.display='none';
-		}
-	</script>
+        }
+        //Reference for the following 3 functions is:
+        // https://stackoverflow.com/questions/28620819/how-to-change-button-text-on-click-using-javascript
+        // https://www.w3schools.com/howto/howto_js_toggle_hide_show.asp
+        function characterFunc(){
+            document.getElementById('addCharacter').style.display='block';
+            var change = document.getElementById('toggle1');
+            if(change.innerHTML == "Add a Character to the Database")
+            {
+                change.innerHTML = "Hide Form";
+            }
+            else{
+                change.innerHTML = "Add a Character to the Database";
+                document.getElementById('addCharacter').style.display='none';
+            }
+        }
+        function equipmentFunc(){
+            document.getElementById('addEquipment').style.display='block';
+            var change = document.getElementById('toggle2');
+            if(change.innerHTML == "Add Equipment to the Database")
+            {
+                change.innerHTML = "Hide Form";
+            }
+            else{
+                change.innerHTML = "Add Equipment to the Database";
+                document.getElementById('addEquipment').style.display='none';
+            }
+        }
+        function cityFunc(){
+            document.getElementById('addCity').style.display='block';
+            var change = document.getElementById('toggle3');
+            if(change.innerHTML == "Add City to the Database")
+            {
+                change.innerHTML = "Hide Form";
+            }
+            else{
+                change.innerHTML = "Add City to the Database";
+                document.getElementById('addCity').style.display='none';
+            }
+        }
+
+    </script>
 </head>
     <body>
         <div id="navbar">
-			<ul>
-				<li><a href="index.html">Home</a></li>
-				<li><a href="characters.html">Characters, Equipment, and Cities</a></li>
-				<li><a href="powers_weaknesses.html">Powers and Weaknesses</a><li>
-				<li><a href="character_relationships.html">Friendships and Rivalries</a><li>
-			</ul>
-		</div>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="characters.html">Characters, Equipment, and Cities</a></li>
+                <li><a href="powers_weaknesses.html">Powers and Weaknesses</a><li>
+                <li><a href="character_relationships.html">Friendships and Rivalries</a><li>
+            </ul>
+        </div>
         <h1>Characters, Equipment, and Cities</h1>
         <p>
-            <button type="button" onclick="document.getElementById('addCharacter').style.display='block'">Add a Character to the Database</button>
-            <button type="button" onclick="document.getElementById('addCharacter').style.display='none'">Hide Form</button>
+            <button type="button" id='toggle1' onclick="characterFunc()">Add a Character to the Database</button>
         </p>
         <form action="#" method="post" id="addCharacter" style="width:50%">
             <fieldset>
@@ -91,6 +130,7 @@
             <input type="text">
             <input type="button" value="Search" onClick="searchFunction()">
         </form>
+         <h3>Here are the current contents of Character</h3>
         <table style="width:50%">
             <tr>
                 <th>id</th>
@@ -111,8 +151,8 @@
                 <td>6</td>
                 <td>Hero</td>
                 <td>N/A</td>
-                <td><button style="width:100%">DELETE</td>
-                <td><button style="width:100%" onclick="document.getElementById('addCharacter').style.display='block'">UPDATE</td>
+                <td><button style="width:100%">DELETE</button></td>
+                <td><button style="width:100%" onclick="document.getElementById('addCharacter').style.display='block'">UPDATE</button></td>
             </tr>
             <tr>
                 <td>2</td>
@@ -122,8 +162,8 @@
                 <td>5</td>
                 <td>Villain</td>
                 <td>N/A</td>
-                <td><button style="width:100%">DELETE</td>
-                <td><button style="width:100%" onclick="document.getElementById('addCharacter').style.display='block'">UPDATE</td>
+                <td><button style="width:100%">DELETE</button></td>
+                <td><button style="width:100%" onclick="document.getElementById('addCharacter').style.display='block'">UPDATE</button></td>
             </tr>
             <tr>
                 <td>3</td>
@@ -133,14 +173,13 @@
                 <td>1</td>
                 <td>Villain</td>
                 <td>N/A</td>
-                <td><button style="width:100%">DELETE</td>
-                <td><button style="width:100%" onclick="document.getElementById('addCharacter').style.display='block'">UPDATE</td>
+                <td><button style="width:100%">DELETE</button></td>
+                <td><button style="width:100%" onclick="document.getElementById('addCharacter').style.display='block'">UPDATE</button></td>
             </tr>
         </table>
 
         <p>
-            <button type="button" onclick="document.getElementById('addEquipment').style.display='block'">Add Equipment to the Database</button>
-            <button type="button" onclick="document.getElementById('addEquipment').style.display='none'">Hide Form</button>
+            <button type="button" id='toggle2' onclick="equipmentFunc()">Add Equipment to the Database</button>
         </p>
         <form action="#" method="post" id="addEquipment" style="width:50%">
             <fieldset>
@@ -176,7 +215,7 @@
                 <td>Hammer</td>
                 <td>Iron</td>
                 <td>5</td>
-                <td><button style="width:100%">DELETE</td>
+                <td><button style="width:100%">DELETE</button></td>
             </tr>
             <tr>
                 <td>2</td>
@@ -184,7 +223,7 @@
                 <td>Lasso</td>
                 <td>Gold</td>
                 <td>7</td>
-                <td><button style="width:100%">DELETE</td>
+                <td><button style="width:100%">DELETE</button></td>
             </tr>
             <tr>
                 <td>3</td>
@@ -192,13 +231,12 @@
                 <td>Endoskeleton</td>
                 <td>Adamantium</td>
                 <td>11</td>
-                <td><button style="width:100%">DELETE</td>
+                <td><button style="width:100%">DELETE</button></td>
             </tr>
         </table>
 
         <p>
-            <button type="button" onclick="document.getElementById('addCity').style.display='block'">Add City to the Database</button>
-            <button type="button" onclick="document.getElementById('addCity').style.display='none'">Hide Form</button>
+            <button type="button" id='toggle3' onclick="cityFunc()">Add City to the Database</button>
         </p>
         <form action="#" method="post" id="addCity" style="width:50%">
             <fieldset>
@@ -225,20 +263,20 @@
                 <td>1</td>
                 <td>Gotham</td>
                 <td>Fictional</td>
-                <td><button style="width:100%">DELETE</td>
+                <td><button style="width:100%">DELETE</button></td>
             </tr>
             <tr>
                 <td>2</td>
                 <td>New York City</td>
                 <td>Real</td>
-                <td><button style="width:100%">DELETE</td>
+                <td><button style="width:100%">DELETE</button></td>
             </tr>
             <tr>
                 <td>3</td>
                 <td>Central City</td>
                 <td>Fictional</td>
-                <td><button style="width:100%">DELETE</td>
+                <td><button style="width:100%">DELETE</button></td>
             </tr>
         </table>
     </body>
-<html>
+</html>
