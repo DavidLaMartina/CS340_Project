@@ -1,0 +1,29 @@
+After looking through all your components for this assignment, it seems like you two have everything covered. You included each of the necessary manipulation queries that are required for the project and your website is really awesome. I like how you have it step up and just from going through your queries and website I feel like I learned a ton, so thank you! The only minor thing I notice was when creating tables and dropping if existing you sometimes included backticks and other times did not. I’m not sure if that matters at all because I was able to successfully import your sql file. Sorry I don’t have much feedback, you two did such an awesome job!
+
+Great job as usual, everything is very thorough I just have one technical point to add:
+
+I originally also used CHECK in my SQL to try to have numbers of certain ranges, unfortunately I found out that the MariaDB version we're using (10.1.22) does not actually enforce the CHECKs, see https://mariadb.com/kb/en/library/constraint/#check-constraints (Links to an external site.)Links to an external site. :
+
+"From MariaDB 10.2.1 (Links to an external site.)Links to an external site., constraints are enforced. Before MariaDB 10.2.1 (Links to an external site.)Links to an external site. constraint expressions were accepted in the syntax but ignored."
+
+I tested this on your Power table and it is indeed true, I inserted a row with power magnitude 20 despite the <11 CHECK:
+
+MariaDB [cs340_newtoner]> INSERT INTO Power (power_type, power_magnitude) VALUES ('x-ray vision2', 20);
+Query OK, 1 row affected (0.00 sec)
+
+MariaDB [cs340_newtoner]> select * from Power;
++----------+------------------------+-----------------+
+| power_id | power_type | power_magnitude |
++----------+------------------------+-----------------+
+| 1 | x-ray vision | 10 |
+| 2 | super strength | 5 |
+| 3 | super strength | 10 |
+| 4 | flight | 5 |
+| 5 | genius-level intellect | 10 |
+| 6 | x-ray vision2 | 20 |
++----------+------------------------+-----------------+
+6 rows in set (0.00 sec)
+
+MariaDB [cs340_newtoner]>
+
+I personally just gave up on this since the CHECKs weren't critical for my project but do let me know if you find a work around. Could be a good question for the instructor how we should do this with this MariaDB version.
