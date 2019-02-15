@@ -27,11 +27,14 @@
 		}
 	</style>
 	<script>
-		window.onload = function(){
-			document.getElementById('addFriendship').style.display='none';
-			document.getElementById('addRivalry').style.display='none';
-		}
-		function friendshipFunc(){
+	window.onload = function(){
+		document.getElementById('addFriendship').style.display='none';
+		document.getElementById('addRivalry').style.display='none';
+	}
+	//Reference for the following 3 functions is:
+        // https://stackoverflow.com/questions/28620819/how-to-change-button-text-on-click-using-javascript
+        // https://www.w3schools.com/howto/howto_js_toggle_hide_show.asp
+        function friendshipFunc(){
             document.getElementById('addFriendship').style.display='block';
             var change = document.getElementById('toggle1');
             if(change.innerHTML == "Add a Friendship between Characters")
