@@ -1,7 +1,5 @@
 <html>
-{{#each foo}}
-{{this}}
-{{/each}}
+
 <h1>Characters, Equipment, and Cities</h1>
 <p>
     <button type="button" id='toggle1' onclick="characterFunc()">Add a Character to the Database</button>
@@ -16,8 +14,8 @@
             Real last name:
         <input type="text" name="lname"><br>
         Select City: <select name="city">
-            {{ #each city}}
-                <option value="{{id}}">{{name}}</option>
+            {{#each city}}
+                <option value="{{city_id}}">{{name}}</option>
             {{/each}}
         </select><br>
                
@@ -27,8 +25,8 @@
         </select><br>
 
         Select Mentor: <select name="mentor">
-            {{ #each mentor}}
-                <option value="{{id}}"> {{city_name}}</option>
+            {{#each mentor}}
+                <option value="{{mentor_id}}"> {{mentor_id}}</option>
             {{/each}}
         </select><br>
         <input type="submit" value="Submit">
@@ -40,7 +38,7 @@
     <label> Filter by city </label>
     <select id='city_filter' name="city_filter"> 
         {{#each city}}
-        <option value="{{id}}">{{city_name}}</option>
+        <option value="{{city_id}}">{{city_name}}</option>
         {{/each}}
     </select><br>
     <input type="button" value="Filter" onclick="filterCity()">
@@ -68,15 +66,15 @@
         <th>Update a Row</th>
     </thead> 
     <tbody>
-        {{#each character}} 
+        {{#each characters}} 
         <tr> 
             <td>{{character_id}}</td> 
             <td>{{character_name}}</td> 
             <td>{{real_first_name}}</td> 
             <td>{{real_last_name}}</td>
-            <td>city</td>
-            <td>role</td>
-            <td>mentor_id</td>
+            <td>{{city}}</td>
+            <td>{{role}}</td>
+            <td>{{mentor_id}}</td>
             <td><button onclick="deleteCharacter({{character_id}})">Delete</button></td>
             <td><a href="/characters/{{character_id}}">Update</a></td>
         </tr> 
@@ -119,6 +117,7 @@
         <th>Delete a Row</th>
     </thead>
     <tbody>
+		{{#each equipment}} 
         <tr>
             <td>{{equipment_id}}</td>
             <td>{{equipment_name}}</td>
@@ -127,6 +126,7 @@
             <td>{{character_id}}</td>
             <td><button onclick="deletePerson({{equipment_id}})">DELETE</button></td>
         </tr>
+		{{/each}}
     </tbody>
 </table>
 
@@ -156,37 +156,16 @@
                 <th>Delete a Row</th>
     </thead>
     <tbody>
-        {{#each city}}
+		    {{#each cities}} 
             <tr>
                 <td>{{city_id}}</td>
                 <td>{{city_name}}</td>
                 <td>{{real_city}}</td>
                 <td><button onclick="deleteCity({{city_id}})">DELETE</button></td>
             </tr>
-        {{/each}}
+           {{/each}}
     </tbody>
 </table>
 
-<h3>Current people:</h3>
-<table>
-    <thead> 
-        <th>First Name</th> 
-        <th>Last Name</th> 
-        <th>Homeworld</th>
-        <th>Age</th>  
-    </thead> 
-    <tbody>
-        {{#each people}} 
-        <tr> 
-            <td>{{fname}}</td> 
-            <td>{{lname}}</td> 
-            <td>{{homeworld}}</td> 
-            <td>{{age}}</td>
-            <td><button onclick="deletePerson({{id}})">Delete</button></td>
-            <td><a href="/people/{{id}}">Update</a></td>
-        </tr> 
-        {{/each}} 
-    </tbody> 
-</table> 
 
 </html>
