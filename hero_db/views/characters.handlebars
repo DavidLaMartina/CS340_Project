@@ -14,8 +14,8 @@
             Real last name:
         <input type="text" name="lname"><br>
         Select City: <select name="city">
-            {{#each city}}
-                <option value="{{city_id}}">{{name}}</option>
+            {{#each cities}}
+                <option value="{{city_id}}">{{city_name}}</option>
             {{/each}}
         </select><br>
                
@@ -25,8 +25,8 @@
         </select><br>
 
         Select Mentor: <select name="mentor">
-            {{#each mentor}}
-                <option value="{{mentor_id}}"> {{mentor_id}}</option>
+            {{#each characters}}
+                <option value="{{mentor_id}}"> {{character_name}}</option>
             {{/each}}
         </select><br>
         <input type="submit" value="Submit">
@@ -37,7 +37,7 @@
 <!--- this form does not submit directly, the button handles all the interaction with backend -->
     <label> Filter by city </label>
     <select id='city_filter' name="city_filter"> 
-        {{#each city}}
+        {{#each cities}}
         <option value="{{city_id}}">{{city_name}}</option>
         {{/each}}
     </select><br>
@@ -97,7 +97,7 @@
                 <input type="text" name="material"><br>
                 Owning character:
                 <select name="owning_character">
-                    {{#each character_id}}
+                    {{#each characters}}
                     <option value="{{character_id}}">{{character_name}}</option>
                     {{/each}}
                 </select><br>
