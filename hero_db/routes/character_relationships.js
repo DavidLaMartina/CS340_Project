@@ -1,7 +1,7 @@
 module.exports = function(){
   var express         = require("express"),
       router          = express.Router(),
-      queries         = require("../queries.js"),
+      read            = require("../queries/read.js"),
       client_scripts  = [];
 
   // Display all friendships and rivalries
@@ -11,13 +11,13 @@ module.exports = function(){
     var context = {};
     context.jsscripts = client_scripts;
     var mysql = req.app.get("mysql");
-    queries.getFriendRelationships(res, mysql, context, complete);
-    queries.getRivalRelationships(res, mysql, context, complete);
+    read.getFriendRelationships(res, mysql, context, complete);
+    read.getRivalRelationships(res, mysql, context, complete);
     function complete(){
       callBackCount++;
       if(callBackCount >= 2){
-        res.send(context);
-        // res.render("characters", context);
+        console.log(context);
+        res.render("characters", context);
       }
     }
   });

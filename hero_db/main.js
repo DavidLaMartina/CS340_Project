@@ -14,6 +14,7 @@ app.set("port", process.argv[2]);
 app.set("mysql", mysql);
 
 // Requiring routes -- enables use of express.Router()
+app.use("/", require("./routes/index.js"));
 app.use("/characters", require("./routes/characters.js"));
 app.use("/powers_weaknesses", require("./routes/powers_weaknesses.js"));
 app.use("/character_relationships", require("./routes/character_relationships.js"));

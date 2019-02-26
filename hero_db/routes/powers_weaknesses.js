@@ -1,7 +1,7 @@
 module.exports = function(){
   var express         = require("express"),
       router          = express.Router(),
-      queries         = require("../queries.js"),
+      read            = require("../queries/read.js"),
       client_scripts  = [];
 
   // Display all powers, weaknesses, and power-weakness relationships
@@ -11,15 +11,15 @@ module.exports = function(){
     var context = {};
     context.jsscripts = client_scripts;
     var mysql = req.app.get("mysql");
-    queries.getPowers(res, mysql, context, complete);
-    queries.getWeaknesses(res, mysql, context, complete);
-    queries.getCharacterPowers(res, mysql, context, complete);
-    queries.getCharacterWeaknesses(res, mysql, context, complete);
+    read.getPowers(res, mysql, context, complete);
+    read.getWeaknesses(res, mysql, context, complete);
+    read.getCharacterPowers(res, mysql, context, complete);
+    read.getCharacterWeaknesses(res, mysql, context, complete);
     function complete(){
       callBackCount++;
       if(callBackCount >= 4){
-        res.send(context);
-        // res.render("characters", context);
+        console.log(context);
+        res.render("characters", context);
       }
     }
   });
