@@ -1,3 +1,5 @@
+console.log("HeLLO HELLO HELLO HELLO HELLO HELLO");
+
 window.onload = function()
 {
 			document.getElementById('addFriendship').style.display='none';
