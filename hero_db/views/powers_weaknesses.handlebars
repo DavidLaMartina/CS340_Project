@@ -1,21 +1,169 @@
-<<<<<<< HEAD
-{{#each this}}
-  {{@key}}: {{this}}
-{{/each}}
-=======
 <html>
-<h1>Update {{person.fname}} {{person.lname}}:</h1>
-<form id="update-person" action="/people" method="post">
-    First name: <input type="text" name="fname" value="{{person.fname}}"><br>
-    Last name: <input type="text" name="lname" value="{{person.lname}}"><br>
-    Homeworld: <select name="homeworld" id="planet-selector"> 
-        {{#each planets}}
-        <option value="{{id}}">{{name}}</option>
-        {{/each}}
-    </select><br>
-    Age: <input type="number" name="age" value="{{person.age}}"><br>
-</form>
-<button onclick="updatePerson({{person.id}})">Update</button>
-<script defer>selectPlanet({{person.homeworld}});</script>
-</html>
->>>>>>> origin/client_side
+
+	<h1>Powers and Weaknesses</h1>
+	<p>
+		<button type="button" id='toggle1' onclick="powerFunc()">Add a Power</button>
+	</p>
+	<form action = "/addPower" method="post" id="addPower">
+		<fieldset>
+			<legend>Power</legend>
+			<div>
+				 Power type  <span style="color:red">(Limited to 100 letters) </span>
+                 <input type="text" maxlength="100" name="power_type" required><br>
+                Power magnitude
+				<span style="color:red">(Number from 1 - 10) </span><input type="number" min="1" step="1" max="10" name="power_magnitude"><br>
+				<input type="submit" value="Submit">					
+			</div>
+		</fieldset>
+	</form>
+	<h3>Here are the current contents of Power</h3>
+	<table>
+		<thead>
+			<th>id</th>
+			<th>Power Type</th>
+			<th>Power Magnitude</th>
+		</thead>
+		<tbody>
+			{{#each powers}} 
+			<tr>
+				<td>{{power_id}}</td>
+				<td>{{power_type}}</td>
+				<td>{{power_magnitude}}</td>
+			</tr>
+			{{/each}}
+		</tbody>
+		</table>
+		<p>
+			<button type="button" id='toggle2' onclick="powerToCharacterFunc()">Add a Power to a Character</button>
+		</p>
+		<form action = "/addCharacterPower" method="post" id="addPowerToCharacter">
+			<fieldset>
+				<legend>Character Powers</legend>
+				<div>
+					<p>Select Power
+						 <select name="owning_character">
+						{{#each powers}}
+						<option value="{{power_id}}">{{power_type}}</option>
+						{{/each}}
+						</select><br>
+					</p>
+				</div>
+				<div>
+					<p>Select Character
+						<select name="owning_character">
+						{{#each character_powers}}
+							<option value="{{character_id}}">{{character_id}}</option>
+						{{/each}}
+						</select><br>
+					</p>
+				</div>
+				<div>
+					<input type="submit" value="Submit">
+				</div>
+			</fieldset>
+		</form>
+		<h3>Here are the current contents of Character Powers</h3>
+		<table>
+			<thead>
+				<th>id</th>
+				<th>Power</th>
+				<th>Character</th>
+				<th>Delete a Row</th>
+			</thead>
+			<tbody>
+				{{#each character_powers}} 
+				<tr>
+					<td>{{id}}</td>
+					<td>{{power_id}}</td>
+					<td>{{character_id}}</td>
+					<td><button>DELETE</button></td>
+				</tr>
+				{{/each}}
+			</tbody>
+		</table>
+
+		<p>
+			<button type="button" id='toggle3' onclick="weaknessFunc()">Add a Weakness</button>
+		</p>
+		<form action = "/addCharacterWeakness" method="post" id="addWeakness">
+			<fieldset>
+				<legend>Weakness</legend>
+				<div>
+					Weakness type  <span style="color:red">(Limited to 100 letters) </span>
+                <input type="text" maxlength="100" required name="weakness_type"><br>
+          Weakness magnitude
+          <span style="color:red">(Number from 1 - 10) </span><input type="number" min="1" step="1" max="10" name="weakness_magnitude"><br>
+           <input type="submit" value="Submit">					
+				</div>
+			</fieldset>
+		</form>
+		<h3>Here are the current contents of Weakness</h3>
+		<table>
+			<thead>
+				<th>id</th>
+				<th>Weakness Type</th>
+				<th>Weakness Magnitude</th>
+			</thead>
+			<tbody>
+				{{#each weaknesses}} 
+				<tr>
+					<td>{{weakness_id}}</td>
+					<td>{{weakness_type}}</td>
+					<td>{{weakness_magnitude}}</td>
+				</tr>
+				{{/each}}
+			</tbody>
+			
+		</table>
+
+		<p>
+			<button type="button" id='toggle4' onclick="weaknessToCharacterFunc()">Add a Weakness to a Character</button>
+		</p>
+		<form action = "/addCharacterWeakness" method="post" id="addWeaknessToCharacter" >
+			<fieldset>
+				<legend>Character Weaknesses</legend>
+				<div>
+					<p>Select Weakness
+						 <select name="weakness_id">
+						{{#each weaknesses}}
+						<option value="{{weakness_id}}">{{weakness_type}}</option>
+						{{/each}}
+						</select><br>
+					</p>
+				</div>
+				<div>
+					<p>Select Character
+						<select name="character_id">
+						{{#each character_weaknesses}}
+							<option value="{{character_id}}">{{character_id}}</option>
+						{{/each}}
+						</select><br>
+					</p>
+				</div>
+				<div>
+					<input type="submit" value="Submit">
+				</div>
+			</fieldset>
+		</form>
+		<h3>Here are the current contents of Character Weaknesses</h3>
+		<table>
+			<thead>
+				<th>id</th>
+				<th>Weakness</th>
+				<th>Character</th>
+				<th>Delete a Row</th>
+			</thead>
+			<tbody>
+				{{#each character_weaknesses}} 
+				<tr>
+					<td>{{id}}</td>
+					<td>{{weakness_id}}</td>
+					<td>{{character_id}}</td>
+					<td><button>DELETE</button></td>
+				</tr>
+				{{/each}}
+			</tbody>
+			
+		</table>
+
+	</html>
