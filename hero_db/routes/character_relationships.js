@@ -22,5 +22,37 @@ module.exports = function(){
     }
   });
 
+  // Add new friendship
+
+  router.post("/addFriendship", function(req, res){
+    var mysql = req.app.get("mysql");
+    var sql = "INSERT INTO `friend_relationship` (friend1_id, friend2_id) VALUES (?, ?)";
+    var inserts = [req.body.friend1_id, req.body.friend2_id];
+    sql = mysql.pool.query(sql, inserts, function(error, results, fields){
+      if(error){
+        res.write(JSON.stringify(error));
+        res.end();
+      }else{
+        res.redirect("/character_relationships");
+      }
+    });
+  });
+
+  // Add new rivalry
+
+  router.post("/addRivalry", function(req, res){
+    var mysql = req.app.get("mysql");
+    var sql = "INSERT INTO `rival_relationship` (rival1_id, rival2_id) VALUES (?, ?)";
+    var inserts = [req.body.rival1_id, req.body.rival2_id];
+    sql = mysql.pool.query(sql, inserts, function(error, results, fields){
+      if(error){
+        res.write(JSON.stringify(error));
+        res.end();
+      }else{
+        res.redirect("/character_relationships");
+      }
+    });
+  });
+
   return router;
 }();
