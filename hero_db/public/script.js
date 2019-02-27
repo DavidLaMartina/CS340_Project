@@ -79,7 +79,8 @@ function cityFunc(){
     else{
         change.innerHTML = "Add City to the Database";
         document.getElementById('addCity').style.display='none';
-    
+      }
+
 }
 
 window.onload = function(){
@@ -143,4 +144,3 @@ function weaknessToCharacterFunc(){
         document.getElementById('addWeaknessToCharacter').style.display='none';
     }
 }
-

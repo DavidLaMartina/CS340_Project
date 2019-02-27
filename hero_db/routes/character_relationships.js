@@ -2,7 +2,7 @@ module.exports = function(){
   var express         = require("express"),
       router          = express.Router(),
       read            = require("../queries/read.js"),
-      client_scripts  = [];
+      client_scripts  = ["script.js"];
 
   // Display all friendships and rivalries
 
