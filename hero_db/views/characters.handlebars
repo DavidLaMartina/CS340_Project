@@ -1,0 +1,171 @@
+<html>
+
+<h1>Characters, Equipment, and Cities</h1>
+<p>
+    <button type="button" id='toggle1' onclick="characterFunc()">Add a Character to the Database</button>
+</p>
+<form action="/characters" method="post" id="addCharacter">
+    <fieldset>
+        <legend>Characters</legend>
+            Character name:
+        <input type="text" name="character_name"><br>
+            Real first name:
+        <input type="text" name="fname"><br>
+            Real last name:
+        <input type="text" name="lname"><br>
+        Select City: <select name="city">
+            {{#each cities}}
+                <option value="{{city_id}}">{{city_name}}</option>
+            {{/each}}
+        </select><br>
+               
+        Select Role: <select name="role">
+            <option value="TRUE">Hero</option>
+            <option value="FALSE">Villain</option>
+        </select><br>
+
+        Select Mentor: <select name="mentor">
+            {{#each characters}}
+                <option value="{{mentor_id}}"> {{character_name}}</option>
+            {{/each}}
+        </select><br>
+        <input type="submit" value="Submit">
+    </fieldset>
+</form>
+
+<form id='filter_cities' action='' method=''>
+<!--- this form does not submit directly, the button handles all the interaction with backend -->
+    <label> Filter by city </label>
+    <select id='city_filter' name="city_filter"> 
+        {{#each cities}}
+        <option value="{{city_id}}">{{city_name}}</option>
+        {{/each}}
+    </select><br>
+    <input type="button" value="Filter" onclick="filterCity()">
+</form>
+
+<form id='search_characters_alter_ego' action='' method=''>
+<!--- this form does not submit directly, the button handles all the interaction with backend -->
+    <label> Search by character alter ego</label>
+    <input id='alter_ego_search_string' type='text' name='alter_ego_search_string' value=''>
+    <input type="button" value="Search" onclick="searchCharacterByAlterEgo()">
+</form>
+
+
+<h3>Here are the current contents of Character</h3>
+<table>
+    <thead> 
+        <th>id</th> 
+        <th>Alter Ego</th> 
+        <th>Real First Name</th>
+        <th>Real Last Name </th>  
+        <th>City ID</th>
+        <th>Role</th>
+        <th>Mentor ID</th>
+        <th>Delete a Row</th>
+        <th>Update a Row</th>
+    </thead> 
+    <tbody>
+        {{#each characters}} 
+        <tr> 
+            <td>{{character_id}}</td> 
+            <td>{{character_name}}</td> 
+            <td>{{real_first_name}}</td> 
+            <td>{{real_last_name}}</td>
+            <td>{{city}}</td>
+            <td>{{role}}</td>
+            <td>{{mentor_id}}</td>
+            <td><button onclick="deleteCharacter({{character_id}})">Delete</button></td>
+            <td><a href="/characters/{{character_id}}">Update</a></td>
+        </tr> 
+        {{/each}} 
+    </tbody> 
+</table> 
+
+
+ <p>
+    <button type="button" id='toggle2' onclick="equipmentFunc()">Add Equipment to the Database</button>
+</p>
+<form action="/equipment" method="post" id="addEquipment">
+    <fieldset>
+        <legend>Equipment</legend>
+            Equipment name:
+        <input type="text" name="equipment_name"><br>
+                Description (type of equipment)
+                <input type="text" name="description"><br>
+                Material
+                <input type="text" name="material"><br>
+                Owning character:
+                <select name="owning_character">
+                    {{#each characters}}
+                    <option value="{{character_id}}">{{character_name}}</option>
+                    {{/each}}
+                </select><br>
+        <input type="submit" value="Submit">
+    </fieldset>
+</form>
+
+     
+<h3>Here are the current contents of Equipment</h3>
+<table>
+    <thead>
+        <th>id</th>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Material</th>
+        <th>Owned by</th>
+        <th>Delete a Row</th>
+    </thead>
+    <tbody>
+		{{#each equipment}} 
+        <tr>
+            <td>{{equipment_id}}</td>
+            <td>{{equipment_name}}</td>
+            <td>{{description}}</td>
+            <td>{{material}}</td>
+            <td>{{character_id}}</td>
+            <td><button onclick="deletePerson({{equipment_id}})">DELETE</button></td>
+        </tr>
+		{{/each}}
+    </tbody>
+</table>
+
+<p>
+    <button type="button" id='toggle3' onclick="cityFunc()">Add City to the Database</button>
+</p>
+<form action="/city" method="post" id="addCity">
+    <fieldset>
+        <legend>Cities</legend>
+            City name:
+        <input type="text" name="city_name">
+        Real or fictional:
+                <select name="real_or_fictional">
+                    <option value="TRUE">Real</option>
+                    <option value="FALSE">Fictional</option>
+                </select><br>
+        <input type="submit" value="Submit">
+    </fieldset>
+</form>
+
+<h3>Here are the current contents of City</h3>
+<table>
+    <thead>
+                <th>id</th>
+                <th>Name</th>
+                <th>Real or Fictional</th>
+                <th>Delete a Row</th>
+    </thead>
+    <tbody>
+		    {{#each cities}} 
+            <tr>
+                <td>{{city_id}}</td>
+                <td>{{city_name}}</td>
+                <td>{{real_city}}</td>
+                <td><button onclick="deleteCity({{city_id}})">DELETE</button></td>
+            </tr>
+           {{/each}}
+    </tbody>
+</table>
+
+
+</html>
