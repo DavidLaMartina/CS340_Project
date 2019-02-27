@@ -4,15 +4,15 @@
 <p>
     <button type="button" id='toggle1' onclick="characterFunc()">Add a Character to the Database</button>
 </p>
-<form action="/characters" method="post" id="addCharacter">
+<form action="/addCharacter" method="post" id="addCharacter">
     <fieldset>
         <legend>Characters</legend>
             Character name:
         <input type="text" name="character_name"><br>
             Real first name:
-        <input type="text" name="fname"><br>
+        <input type="text" name="real_first_name"><br>
             Real last name:
-        <input type="text" name="lname"><br>
+        <input type="text" name="real_last_name"><br>
         Select City: <select name="city">
             {{#each cities}}
                 <option value="{{city_id}}">{{city_name}}</option>
@@ -24,7 +24,7 @@
             <option value="FALSE">Villain</option>
         </select><br>
 
-        Select Mentor: <select name="mentor">
+        Select Mentor: <select name="mentor_id">
             {{#each characters}}
                 <option value="{{mentor_id}}"> {{character_name}}</option>
             {{/each}}
