@@ -2,7 +2,7 @@ module.exports = function(){
   var express         = require("express"),
       router          = express.Router(),
       read            = require("../queries/read.js"),
-      client_scripts  = ["script.js"];
+      client_scripts  = ["script_character.js"];
 
   // Display all characters, equipment, and cities
 

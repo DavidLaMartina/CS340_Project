@@ -2,7 +2,7 @@ module.exports = function(){
   var express         = require("express"),
       router          = express.Router(),
       read            = require("../queries/read.js"),
-      client_scripts  = ["script.js"];
+      client_scripts  = ["script_relationship.js"];
 
   // Display all friendships and rivalries
 
@@ -17,7 +17,7 @@ module.exports = function(){
       callBackCount++;
       if(callBackCount >= 2){
         console.log(context);
-        res.render("characters", context);
+        res.render("character_relationships", context);
       }
     }
   });

@@ -2,7 +2,7 @@ module.exports = function(){
   var express         = require("express"),
       router          = express.Router(),
       read            = require("../queries/read.js"),
-      client_scripts  = ["script.js"];
+      client_scripts  = ["script_powers_weakness.js"];
 
   // Display all powers, weaknesses, and power-weakness relationships
 
@@ -19,7 +19,7 @@ module.exports = function(){
       callBackCount++;
       if(callBackCount >= 4){
         console.log(context);
-        res.render("characters", context);
+        res.render("powers_weaknesses", context);
       }
     }
   });
