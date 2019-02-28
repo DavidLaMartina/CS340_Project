@@ -4,7 +4,7 @@
 <p>
     <button type="button" id='toggle1' onclick="characterFunc()">Add a Character to the Database</button>
 </p>
-<form action="/addCharacter" method="post" id="addCharacter">
+<form action="/characters/addCharacter" method="post" id="addCharacter">
     <fieldset>
         <legend>Characters</legend>
             Character name:
@@ -14,19 +14,21 @@
             Real last name:
         <input type="text" name="real_last_name"><br>
         Select City: <select name="city">
+            <option></option>
             {{#each cities}}
                 <option value="{{city_id}}">{{city_name}}</option>
             {{/each}}
         </select><br>
-               
+
         Select Role: <select name="role">
             <option value="TRUE">Hero</option>
             <option value="FALSE">Villain</option>
         </select><br>
 
         Select Mentor: <select name="mentor_id">
+            <option></option>
             {{#each characters}}
-                <option value="{{mentor_id}}"> {{character_name}}</option>
+                <option value="{{character_id}}"> {{character_name}}</option>
             {{/each}}
         </select><br>
         <input type="submit" value="Submit">
@@ -36,7 +38,7 @@
 <form id='filter_cities' action='' method=''>
 <!--- this form does not submit directly, the button handles all the interaction with backend -->
     <label> Filter by city </label>
-    <select id='city_filter' name="city_filter"> 
+    <select id='city_filter' name="city_filter">
         {{#each cities}}
         <option value="{{city_id}}">{{city_name}}</option>
         {{/each}}
@@ -54,39 +56,39 @@
 
 <h3>Here are the current contents of Character</h3>
 <table>
-    <thead> 
-        <th>id</th> 
-        <th>Alter Ego</th> 
+    <thead>
+        <th>id</th>
+        <th>Alter Ego</th>
         <th>Real First Name</th>
-        <th>Real Last Name </th>  
+        <th>Real Last Name </th>
         <th>City ID</th>
         <th>Role</th>
         <th>Mentor ID</th>
         <th>Delete a Row</th>
         <th>Update a Row</th>
-    </thead> 
+    </thead>
     <tbody>
-        {{#each characters}} 
-        <tr> 
-            <td>{{character_id}}</td> 
-            <td>{{character_name}}</td> 
-            <td>{{real_first_name}}</td> 
+        {{#each characters}}
+        <tr>
+            <td>{{character_id}}</td>
+            <td>{{character_name}}</td>
+            <td>{{real_first_name}}</td>
             <td>{{real_last_name}}</td>
             <td>{{city}}</td>
             <td>{{role}}</td>
             <td>{{mentor_id}}</td>
             <td><button onclick="deleteCharacter({{character_id}})">Delete</button></td>
             <td><a href="/characters/{{character_id}}">Update</a></td>
-        </tr> 
-        {{/each}} 
-    </tbody> 
-</table> 
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
 
 
  <p>
     <button type="button" id='toggle2' onclick="equipmentFunc()">Add Equipment to the Database</button>
 </p>
-<form action="/equipment" method="post" id="addEquipment">
+<form action="/characters/equipment" method="post" id="addEquipment">
     <fieldset>
         <legend>Equipment</legend>
             Equipment name:
@@ -105,7 +107,7 @@
     </fieldset>
 </form>
 
-     
+
 <h3>Here are the current contents of Equipment</h3>
 <table>
     <thead>
@@ -117,7 +119,7 @@
         <th>Delete a Row</th>
     </thead>
     <tbody>
-		{{#each equipment}} 
+		{{#each equipment}}
         <tr>
             <td>{{equipment_id}}</td>
             <td>{{equipment_name}}</td>
@@ -133,13 +135,13 @@
 <p>
     <button type="button" id='toggle3' onclick="cityFunc()">Add City to the Database</button>
 </p>
-<form action="/city" method="post" id="addCity">
+<form action="/characters/addCity" method="post" id="addCity">
     <fieldset>
         <legend>Cities</legend>
             City name:
         <input type="text" name="city_name">
         Real or fictional:
-                <select name="real_or_fictional">
+                <select name="real_city">
                     <option value="TRUE">Real</option>
                     <option value="FALSE">Fictional</option>
                 </select><br>
@@ -156,7 +158,7 @@
                 <th>Delete a Row</th>
     </thead>
     <tbody>
-		    {{#each cities}} 
+		    {{#each cities}}
             <tr>
                 <td>{{city_id}}</td>
                 <td>{{city_name}}</td>

@@ -4,7 +4,7 @@
 	<p>
 		<button type="button" id='toggle1' onclick="powerFunc()">Add a Power</button>
 	</p>
-	<form action = "/addPower" method="post" id="addPower">
+	<form action = "/powers_weaknesses/addPower" method="post" id="addPower">
 		<fieldset>
 			<legend>Power</legend>
 			<div>
@@ -12,7 +12,7 @@
                  <input type="text" maxlength="100" name="power_type" required><br>
                 Power magnitude
 				<span style="color:red">(Number from 1 - 10) </span><input type="number" min="1" step="1" max="10" name="power_magnitude"><br>
-				<input type="submit" value="Submit">					
+				<input type="submit" value="Submit">
 			</div>
 		</fieldset>
 	</form>
@@ -24,7 +24,7 @@
 			<th>Power Magnitude</th>
 		</thead>
 		<tbody>
-			{{#each powers}} 
+			{{#each powers}}
 			<tr>
 				<td>{{power_id}}</td>
 				<td>{{power_type}}</td>
@@ -36,12 +36,12 @@
 		<p>
 			<button type="button" id='toggle2' onclick="powerToCharacterFunc()">Add a Power to a Character</button>
 		</p>
-		<form action = "/addCharacterPower" method="post" id="addPowerToCharacter">
+		<form action = "/powers_weaknesses/addCharacterPower" method="post" id="addPowerToCharacter">
 			<fieldset>
 				<legend>Character Powers</legend>
 				<div>
 					<p>Select Power
-						 <select name="owning_character">
+						 <select name="power_id">
 						{{#each powers}}
 						<option value="{{power_id}}">{{power_type}}</option>
 						{{/each}}
@@ -50,9 +50,9 @@
 				</div>
 				<div>
 					<p>Select Character
-						<select name="owning_character">
-						{{#each character_powers}}
-							<option value="{{character_id}}">{{character_id}}</option>
+						<select name="character_id">
+						{{#each characters}}
+							<option value="{{character_id}}">{{character_name}}</option>
 						{{/each}}
 						</select><br>
 					</p>
@@ -71,7 +71,7 @@
 				<th>Delete a Row</th>
 			</thead>
 			<tbody>
-				{{#each character_powers}} 
+				{{#each character_powers}}
 				<tr>
 					<td>{{id}}</td>
 					<td>{{power_id}}</td>
@@ -85,7 +85,7 @@
 		<p>
 			<button type="button" id='toggle3' onclick="weaknessFunc()">Add a Weakness</button>
 		</p>
-		<form action = "/addCharacterWeakness" method="post" id="addWeakness">
+		<form action = "/powers_weaknesses/addWeakness" method="post" id="addWeakness">
 			<fieldset>
 				<legend>Weakness</legend>
 				<div>
@@ -93,7 +93,7 @@
                 <input type="text" maxlength="100" required name="weakness_type"><br>
           Weakness magnitude
           <span style="color:red">(Number from 1 - 10) </span><input type="number" min="1" step="1" max="10" name="weakness_magnitude"><br>
-           <input type="submit" value="Submit">					
+           <input type="submit" value="Submit">
 				</div>
 			</fieldset>
 		</form>
@@ -105,7 +105,7 @@
 				<th>Weakness Magnitude</th>
 			</thead>
 			<tbody>
-				{{#each weaknesses}} 
+				{{#each weaknesses}}
 				<tr>
 					<td>{{weakness_id}}</td>
 					<td>{{weakness_type}}</td>
@@ -113,13 +113,13 @@
 				</tr>
 				{{/each}}
 			</tbody>
-			
+
 		</table>
 
 		<p>
 			<button type="button" id='toggle4' onclick="weaknessToCharacterFunc()">Add a Weakness to a Character</button>
 		</p>
-		<form action = "/addCharacterWeakness" method="post" id="addWeaknessToCharacter" >
+		<form action = "/powers_weaknesses/addCharacterWeakness" method="post" id="addWeaknessToCharacter" >
 			<fieldset>
 				<legend>Character Weaknesses</legend>
 				<div>
@@ -134,8 +134,8 @@
 				<div>
 					<p>Select Character
 						<select name="character_id">
-						{{#each character_weaknesses}}
-							<option value="{{character_id}}">{{character_id}}</option>
+						{{#each characters}}
+							<option value="{{character_id}}">{{character_name}}</option>
 						{{/each}}
 						</select><br>
 					</p>
@@ -154,7 +154,7 @@
 				<th>Delete a Row</th>
 			</thead>
 			<tbody>
-				{{#each character_weaknesses}} 
+				{{#each character_weaknesses}}
 				<tr>
 					<td>{{id}}</td>
 					<td>{{weakness_id}}</td>
@@ -163,7 +163,7 @@
 				</tr>
 				{{/each}}
 			</tbody>
-			
+
 		</table>
 
 	</html>

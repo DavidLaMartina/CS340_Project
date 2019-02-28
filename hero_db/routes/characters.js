@@ -30,7 +30,12 @@ module.exports = function(){
     console.log(req.body);
     var mysql = req.app.get("mysql");
     var sql = "INSERT INTO `Character` (character_name, real_first_name, real_last_name, city, role, mentor_id) VALUES (?, ?, ?, ?, ?, ?)";
-    var inserts = [req.body.character_name, req.body.real_first_name, req.body.real_last_name, req.body.city, req.body.role, req.body.mentor_id];
+    if(req.body.role === "TRUE"){
+      var role = true;
+    }else{
+      var role = false;
+    }
+    var inserts = [req.body.character_name, req.body.real_first_name, req.body.real_last_name, req.body.city || null, role, req.body.mentor_id || null];
     sql = mysql.pool.query(sql, inserts, function(error, results, fields){
       if(error){
         res.write(JSON.stringify(error));
@@ -61,7 +66,12 @@ module.exports = function(){
   router.post("/addCity", function(req, res){
     var mysql = req.app.get("mysql");
     var sql = "INSERT INTO `City` (city_name, real_city) VALUES (?, ?)";
-    var inserts = [req.body.city_name, req.body.real_city];
+    if(req.body.real_city === "TRUE"){
+      var real_city = true;
+    }else{
+      var real_city = false;
+    }
+    var inserts = [req.body.city_name, real_city];
     sql = mysql.pool.query(sql, inserts, function(error, results, fields){
       if(error){
         res.write(JSON.stringify(error));

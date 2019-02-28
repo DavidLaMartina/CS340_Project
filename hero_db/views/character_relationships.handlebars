@@ -4,23 +4,23 @@
 <p>
 	<button type="button" id='toggle1' onclick="friendshipFunc()">Add a Friendship between Characters</button>
 </p>
-	<form action = "/character_relationships" method="post" id="addFriendship">
+	<form action = "/character_relationships/addFriendship" method="post" id="addFriendship">
 		<fieldset>
 			<legend>Character Friendships</legend>
 				<div>
-					<p>Select Character 1 
-					<select name="friend_character1">
-                    {{#each friendships}}
-						<option value="{{friend1_id}}">{{friend1_id}}</option>
+					<p>Select Character 1
+					<select name="friend1_id">
+                    {{#each characters}}
+						<option value="{{character_id}}">{{character_name}}</option>
                     {{/each}}
                 </select><br>
 					</p>
 				</div>
 				<div>
 					<p>Select Character 2
-					<select name="friend_character2">
-                    {{#each friendships}}
-						<option value="{{friend2_id}}">{{friend2_id}}</option>
+					<select name="friend2_id">
+                    {{#each characters}}
+						<option value="{{character_id}}">{{character_name}}</option>
                     {{/each}}
 					</select><br>
 					</p>
@@ -53,23 +53,23 @@
 	<p>
 		<button type="button" id='toggle2' onclick="rivalFunc()">Add a Rivalry between Characters</button>
 	</p>
-	<form action = "character_relationships" method="post" id="addRivalry">
+	<form action = "/character_relationships/addRivalry" method="post" id="addRivalry">
 		<fieldset>
 			<legend>Rivalry</legend>
 				<div>
 					<p>Select Character 1
-					<select name="rival_character1">
-                    {{#each rivalries}}
-						<option value="{{rival1_id}}">{{rival1_id}}</option>
+					<select name="rival1_id">
+                    {{#each characters}}
+						<option value="{{character_id}}">{{character_name}}</option>
                     {{/each}}
 					</select><br>
 					</p>
 				</div>
 				<div>
 					<p>Select Character 2
-						<select name="rival_character2">
-						{{#each rivalries}}
-							<option value="{{rival2_id}}">{{rival2_id}}</option>
+						<select name="rival2_id">
+						{{#each characters}}
+							<option value="{{character_id}}">{{character_name}}</option>
 						{{/each}}
 						</select><br>
 					</p>

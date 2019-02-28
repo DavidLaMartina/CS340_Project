@@ -13,9 +13,10 @@ module.exports = function(){
     var mysql = req.app.get("mysql");
     read.getFriendRelationships(res, mysql, context, complete);
     read.getRivalRelationships(res, mysql, context, complete);
+    read.getCharacters(res, mysql, context, complete);
     function complete(){
       callBackCount++;
-      if(callBackCount >= 2){
+      if(callBackCount >= 3){
         console.log(context);
         res.render("character_relationships", context);
       }
