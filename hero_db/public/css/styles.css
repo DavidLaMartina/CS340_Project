@@ -10,27 +10,28 @@ table button{
 /************************************************
 Styles for the navigation bar
 *************************************************/
-ul{
-	list-style-type: none;
-	margin: 0;
-	padding: 0;
-	overflow: hidden;
-	background-color: #b0e0e6;
+#navbar ul{
+			list-style-type: none;
+			margin: 0;
+			padding: 0;
+			overflow: hidden;
+			background-color: #b0e0e6;
 }
-li{
+#navbar li{
 	float: left;
 }
-
-li a{
+#navbar li a{
 	display: block;
 	color: black;
 	text-align: center;
 	padding: 1em;
 	text-decoration: none;
 }
-
-li a:hover{
+	#navbar li a:hover{
 	background-color:white;
+}
+ul.description > li{
+            width: 50%
 }
 /**********************************************/
 
@@ -41,4 +42,11 @@ Styles for forms
 /**********************************************/
 form {
 	width: 50%;
+}
+
+/********************************************/
+Styles for ul
+/********************************************/
+ul.description > li{
+            width: 50%
 }
