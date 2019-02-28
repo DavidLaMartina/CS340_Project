@@ -1,1 +1,42 @@
-<h1>HOME PAGE</h1>
+    <h3><a href="/characters">Characters, Equipment, and Cities</a></h3>
+        <ul class = "description">
+            <li><em>Character: </em>This is central table of the Superhero database. It contains entries for all heroes
+                                    and villains within the database, those heroes' real first and last names, their cities
+                                    and references to their mentors (if they have one). The "role" boolean value also indicates
+                                    whether the character is considered a hero or villain.</li>
+            <li><em>Equipment: </em>The Equipment table contains the weapons, armor, costumes, and other key pieces of equipment
+                                    for the characters in the Character table. Each piece of equipment has a specific name, a more
+                                    generic description ("hammer," "bow," etc.), a material, and a reference to its owning character.
+                                    A piece of equipment MUST have an owner, and if the owning character's row is deleted from the
+                                    Character table, that piece of equipment will be deleted, as well.</li>
+            <li><em>Cities: </em>   The Cities table contains all of the cities, real and fictional, in which the characters live. These
+                                    cities can be real or fictional, indicated by a boolean value in the table. For instance, Gotham is
+                                    a fictional city where Batman lives, and New York City is a real city where Spiderman lives. A character's
+                                    city reference is allowed to be null in the Character table, and a city may exist in the Cities table
+                                    without any characters' city references currently pointing to it.</li>
+        </ul>
+    <h3 class="description"><a href="/powers_weaknesses">Powers and Weaknesses</a></h3>
+        <ul class = "description">
+            <li><em>Powers: </em>               The Powers table contains all of the characters' superpowers. Each power includes a type (super strength,
+                                                for instance) and a magnitude on a scale from 1 to 10.</li>
+            <li><em>Character Powers: </em>     Powers exist in a many-to-many relationship with Characters. For instance, there may be multiple characters
+                                                with super strength of magnitude 7. Thus, this table exists to clarify the relationships between characters
+                                                and their respective powers.</li>
+            <li><em>Weaknesses: </em>           The Weaknesses table is analogous to the Powers table, but for weaknesses. Each weakness includes a type
+                                                (Kryptonite, for instance) and a magnitude from 1 to 10.</li>
+            <li><em>Character Weaknesses: </em> Like Powers, Weaknesses exist in a many-to-many relationship with Characters. For instance, both Superman and
+                                                Supergirl might have a Kryptonite weakness of magnitude 10. Thus, this table exists to clarify the relationships
+                                                between characters and their respective strengths.</li>
+        </ul>
+    <h3 class="description"><a href="/character_relationships">Friendships and Rivalries</a></h3>
+        <ul class = "description">
+            <li><em>Friend Relationships: </em> Characters can be friends with other characters, and because any given character may be friends with 0, 1 or
+                                                many other characters, this is a many-to-many relationship. Heroes are allowed to be friends with villains, and
+                                                vice-versa. Duplicate entries are not allowed (e.g. if Batman is friends with Superman, there will not be an entry
+                                                that also says Superman is friends with Batman).</li>
+            <li><em>Rival Relationships: </em>  Characters can also be rivals with other characters, and this is likewise a many-to-many relationship. Heroes
+                                                can be considered rivals with other heroes, and villains may be considered rivals with other villains (e.g.
+                                                Cyclops and Wolverine kind of hate each other). Like the Friend Relationship table, this table prevents what
+                                                essentially amount to duplicate entries (if Cyclops is a rival to Wolverine, there will not be an entry that
+                                                says Wolverine is a rival to Cyclops.)</li>
+        </ul>
