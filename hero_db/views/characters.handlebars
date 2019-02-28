@@ -88,7 +88,7 @@
  <p>
     <button type="button" id='toggle2' onclick="equipmentFunc()">Add Equipment to the Database</button>
 </p>
-<form action="/characters/equipment" method="post" id="addEquipment">
+<form action="/characters/addEquipment" method="post" id="addEquipment">
     <fieldset>
         <legend>Equipment</legend>
             Equipment name:
@@ -98,7 +98,7 @@
                 Material
                 <input type="text" name="material"><br>
                 Owning character:
-                <select name="owning_character">
+                <select name="character_id">
                     {{#each characters}}
                     <option value="{{character_id}}">{{character_name}}</option>
                     {{/each}}
