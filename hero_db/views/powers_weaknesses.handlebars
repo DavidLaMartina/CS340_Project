@@ -4,15 +4,16 @@
 	<p>
 		<button type="button" id='toggle1' onclick="powerFunc()">Add a Power</button>
 	</p>
-	<form action = "/powers_weaknesses/addPower" method="post" id="addPower">
+	<form action = "/powers_weaknesses/addPower" method="post" id="addPower" name="power_form" onsubmit="return validatePowerNumber()">
 		<fieldset>
 			<legend>Power</legend>
 			<div>
 				 Power type  <span style="color:red">(Limited to 100 letters) </span>
-                 <input type="text" maxlength="100" name="power_type" required><br>
+                 <input type="text" maxlength="100" name="power_type" required id="power_type"><br>
                 Power magnitude
 				<span style="color:red">(Number from 1 - 10) </span><input type="number" min="1" step="1" max="10" name="power_magnitude"><br>
 				<input type="submit" value="Submit">
+				<p id = "power_message"></p>
 			</div>
 		</fieldset>
 	</form>
@@ -85,15 +86,17 @@
 		<p>
 			<button type="button" id='toggle3' onclick="weaknessFunc()">Add a Weakness</button>
 		</p>
-		<form action = "/powers_weaknesses/addWeakness" method="post" id="addWeakness">
+		<form action = "/powers_weaknesses/addWeakness" method="post" id="addWeakness" name="weakness_form" onsubmit="return validateNumber()">
 			<fieldset>
 				<legend>Weakness</legend>
 				<div>
 					Weakness type  <span style="color:red">(Limited to 100 letters) </span>
-                <input type="text" maxlength="100" required name="weakness_type"><br>
-          Weakness magnitude
-          <span style="color:red">(Number from 1 - 10) </span><input type="number" min="1" step="1" max="10" name="weakness_magnitude"><br>
-           <input type="submit" value="Submit">
+					<input type="text" maxlength="100" required name="weakness_type" id="weakness_type"><br>
+					Weakness magnitude
+					<span style="color:red">(Number from 1 - 10) </span><input type="number" min="1" step="1" max="10"  id = "weakness"
+					name="weakness_magnitude"><br>
+					<input type="submit" value="Submit">
+					<p id ="message"></p>
 				</div>
 			</fieldset>
 		</form>
