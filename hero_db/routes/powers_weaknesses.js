@@ -41,6 +41,23 @@ module.exports = function(){
     });
   });
 
+  // Delete power
+
+  router.delete("/deletePower/:power_id", function(req, res){
+    var mysql = req.app.get("mysql");
+    var sql = "DELETE FROM `Power` WHERE power_id = ?";
+    var inserts = [req.params.power_id];
+    sql = mysql.pool.query(sql, inserts, function(error, results, fields){
+      if(error){
+        res.write(JSON.stringify(error));
+        res.status(400);
+        res.end();
+      }else{
+        res.status(202).end();
+      }
+    });
+  });
+
   // Create new weakness
 
   router.post("/addWeakness", function(req, res){
@@ -53,6 +70,23 @@ module.exports = function(){
         res.end();
       }else{
         res.redirect("/powers_weaknesses");
+      }
+    });
+  });
+
+  // Delete weakness
+
+  router.delete("/deleteWeakness/:weakness_id", function(req, res){
+    var mysql = req.app.get("mysql");
+    var sql = "DELETE FROM `Weakness` WHERE weakness_id = ?";
+    var inserts = [req.params.weakness_id];
+    sql = mysql.pool.query(sql, inserts, function(error, results, fields){
+      if(error){
+        res.write(JSON.stringify(error));
+        res.status(400);
+        res.end();
+      }else{
+        res.status(202).end();
       }
     });
   });
@@ -74,6 +108,23 @@ module.exports = function(){
     });
   });
 
+  // Delete power-character relationship
+
+  router.delete("/deleteCharacterPower/:id", function(req, res){
+    var mysql = req.app.get("mysql");
+    var sql = "DELETE FROM `character_powers` WHERE id = ?";
+    var inserts = [req.params.id];
+    sql = mysql.pool.query(sql, inserts, function(error, results, fields){
+      if(error){
+        res.write(JSON.stringify(error));
+        res.status(400);
+        res.end();
+      }else{
+        res.status(202).end();
+      }
+    });
+  });
+
   // Create new weakness-character relationship
 
   router.post("/addCharacterWeakness", function(req, res){
@@ -86,6 +137,23 @@ module.exports = function(){
         res.end();
       }else{
         res.redirect("/powers_weaknesses");
+      }
+    });
+  });
+
+  // Delete weakness-character relationship
+
+  router.delete("/deleteCharacterWeakness/:id", function(req, res){
+    var mysql = req.app.get("mysql");
+    var sql = "DELETE FROM `character_weaknesses` WHERE id = ?";
+    var inserts = [req.params.id];
+    sql = mysql.pool.query(sql, inserts, function(error, results, fields){
+      if(error){
+        res.write(JSON.stringify(error));
+        res.status(400);
+        res.end();
+      }else{
+        res.status(202).end();
       }
     });
   });

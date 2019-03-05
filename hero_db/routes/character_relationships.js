@@ -39,6 +39,23 @@ module.exports = function(){
     });
   });
 
+  // Delete friendship
+
+  router.delete("/deleteFriendship/:id", function(req, res){
+    var mysql = req.app.get("mysql");
+    var sql = "DELETE FROM `friend_relationship` WHERE id = ?";
+    var inserts = [req.params.id];
+    sql = mysql.pool.query(sql, inserts, function(error, results, fields){
+      if(error){
+        res.write(JSON.stringify(error));
+        res.status(400);
+        res.end();
+      }else{
+        res.status(202).end();
+      }
+    });
+  });
+
   // Add new rivalry
 
   router.post("/addRivalry", function(req, res){
@@ -51,6 +68,23 @@ module.exports = function(){
         res.end();
       }else{
         res.redirect("/character_relationships");
+      }
+    });
+  });
+
+  // Delete rivalry
+
+  router.delete("/deleteRivalry/:id", function(req, res){
+    var mysql = req.app.get("mysql");
+    var sql = "DELETE FROM `rival_relationship` WHERE id = ?";
+    var inserts = [req.params.id];
+    sql = mysql.pool.query(sql, inserts, function(error, results, fields){
+      if(error){
+        res.write(JSON.stringify(error));
+        res.status(400);
+        res.end();
+      }else{
+        res.status(202).end();
       }
     });
   });
