@@ -1,10 +1,37 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title>UPDATE CHARACTER</title>
-  </head>
-  <body>
-    <p>YOU'VE REACHED THE UPDATE CHARACTER PAGE!</p>
-  </body>
+<html>
+
+	<h1>Update {{character.character_name}}</h1>
+	<form id="{{character_id}}" action="/characters/{{character_id}}" method="post">
+
+		<fieldset>
+			<legend>Characters</legend>
+				Character name:
+			<input type="text" name="character_name" required value="{{character.character_name}}"><br>
+				Real first name:
+			<input type="text" name="real_first_name" value="{{character.real_first_name}}"><br>
+				Real last name:
+			<input type="text" name="real_last_name" value="{{character.real_last_name}}"><br>
+			Select City: <select name="city" id="city-selector">
+				<option></option>
+				{{#each cities}}
+					<option value="{{city_id}}">{{city_name}}</option>
+				{{/each}}
+			</select><br>
+
+			Select Role: <select name="role" id="role-selector">
+				<option value="TRUE">Hero</option>
+				<option value="FALSE">Villain</option>
+			</select><br>
+
+			Select Mentor: <select name="mentor_id" id="mentor-selector">
+				<option></option>
+				{{#each characters}}
+                <option value="{{character.character_id}}"> {{character_name}}</option>
+				{{/each}}
+			</select><br>
+				<button onclick="updateCharacter({{character.character_id}})">Update</button>
+				<script defer> selectCity({{character.city}}); </script>
+		</fieldset>
+	</form>
 </html>
+

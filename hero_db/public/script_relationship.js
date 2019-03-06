@@ -31,3 +31,23 @@ function rivalFunc(){
         document.getElementById('addRivalry').style.display='none';
     }
 }
+
+function deleteFriendship(id){
+	$.ajax({
+		url: '/character_relationships/deleteFriendship/' + id,
+		type: 'DELETE',
+		success: function(result){
+			window.location.reload(true);
+		}
+	})
+};
+
+function deleteRivalry(id){
+	$.ajax({
+		url: '/character_relationships/deleteRivalry/' + id,
+		type: 'DELETE',
+		success: function(result){
+			window.location.reload(true);
+		}
+	})
+};

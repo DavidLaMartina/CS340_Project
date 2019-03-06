@@ -46,3 +46,32 @@ function cityFunc(){
       }
 
 }
+function deleteCharacter(id){
+	$.ajax({
+		url: '/characters/deleteCharacter/' + id,
+		type: 'DELETE',
+		success: function(result){
+			window.location.reload(true);
+		}
+	})
+};
+
+function deleteEquipment(id){
+	$.ajax({
+		url: '/characters/deleteEquipment/' + id,
+		type: 'DELETE',
+		success: function(result){
+			window.location.reload(true);
+		}
+	})
+};
+
+function deleteCity(id){
+	$.ajax({
+		url: '/characters/deleteCity/' + id,
+		type: 'DELETE',
+		success: function(result){
+			window.location.reload(true);
+		}
+	})
+};

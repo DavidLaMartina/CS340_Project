@@ -47,7 +47,7 @@
 					<td>{{id}}</td>
 					<td>{{friend1_id}}</td>
 					<td>{{friend2_id}}</td>
-					<td><button>DELETE</button></td>
+					<td><button onclick="deleteFriendship({{id}})">DELETE</button></td>
 				</tr>
 				{{/each}}
 			</tbody>
@@ -99,7 +99,7 @@
 				<td>{{id}}</td>
 				<td>{{rival1_id}}</td>
 				<td>{{rival2_id}}</td>
-				<td><button>DELETE</button></td>
+				<td><button onclick="deleteRivalry({{id}})">DELETE</button></td>
 			</tr>
 				{{/each}}
 			</tbody>

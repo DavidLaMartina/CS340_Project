@@ -97,3 +97,23 @@ function validatePowerNumber(){
 	//set a message for the user in the form
 	document.getElementById("power_message").innerHTML = text;
 }
+
+function deleteCharacterPower(id){
+	$.ajax({
+		url: '/powers_weaknesses/deleteCharacterPower/' + id,
+		type: 'DELETE',
+		success: function(result){
+			window.location.reload(true);
+		}
+	})
+};
+
+function deleteCharacterWeakness(id){
+	$.ajax({
+		url: '/powers_weaknesses/deleteCharacterWeakness/' + id,
+		type: 'DELETE',
+		success: function(result){
+			window.location.reload(true);
+		}
+	})
+};
