@@ -26,7 +26,7 @@
 			Select Mentor: <select name="mentor_id" id="mentor-selector">
 				<option></option>
 				{{#each characters}}
-                <option value="{{character.character_id}}"> {{character_name}}</option>
+                <option value="{{character_id}}">{{character_name}}</option>
 				{{/each}}
 			</select><br>
 				<button onclick="updateCharacter({{character.character_id}})">Update</button>
@@ -34,4 +34,3 @@
 		</fieldset>
 	</form>
 </html>
-

@@ -88,11 +88,12 @@ var express         = require("express"),
     context.jsscripts = client_scripts;
     var mysql = req.app.get("mysql");
     getCharacter(res, mysql, context, req.params.character_id, complete);
-    // read.getEquipment(res, mysql, context, complete);
-    // read.getCities(res, mysql, context, complete);
+    read.getEquipment(res, mysql, context, complete);
+    read.getCities(res, mysql, context, complete);
+    read.getCharacters(res, mysql, context, complete);
     function complete(){
       callBackCount++;
-      if(callBackCount >= 1){
+      if(callBackCount >= 4){
         console.log(context);
         res.render("update-character", context);
       }
