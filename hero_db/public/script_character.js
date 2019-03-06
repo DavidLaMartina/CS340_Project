@@ -75,3 +75,9 @@ function deleteCity(id){
 		}
 	})
 };
+
+function selectCity(id){
+	alert("Here is the incoming id " + id);
+	$("#city-selector").val(id);
+    
+}
