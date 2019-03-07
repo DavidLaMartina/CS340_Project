@@ -1,7 +1,7 @@
 <html>
 
 	<h1>Update {{character.character_name}}</h1>
-	<form id="{{character_id}}" action="/characters/{{character_id}}" method="post">
+	<form id="update-character" action="/characters/{{character_id}}" method="post">
 
 		<fieldset>
 			<legend>Characters</legend>
@@ -14,7 +14,7 @@
 			Select City: <select name="city" id="city-selector">
 				<option></option>
 				{{#each cities}}
-					<option value="{{city.city_id}}">{{city.city_name}}</option>
+					<option value="{{city_id}}">{{city_name}}</option>
 				{{/each}}
 			</select><br>
 

@@ -77,7 +77,17 @@ function deleteCity(id){
 };
 
 function selectCity(id){
-	alert("Here is the incoming id " + id);
 	$("#city-selector").val(id);
     
 }
+
+function updateCharacter(id){
+	$.ajax({
+		url: '/characters/' + id,
+		type: 'PUT',
+		data: $('#update-character').serialize(),
+		success: function(result){
+			window.location.replace("./");
+		}
+	})
+};
