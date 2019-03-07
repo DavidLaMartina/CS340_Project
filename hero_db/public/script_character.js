@@ -82,6 +82,7 @@ function selectCity(id){
 }
 
 function updateCharacter(id){
+	alert("Hello World");
 	$.ajax({
 		url: '/characters/' + id,
 		type: 'PUT',
