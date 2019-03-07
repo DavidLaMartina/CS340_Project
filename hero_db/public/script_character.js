@@ -82,7 +82,6 @@ function selectCity(id){
 }
 
 function updateCharacter(id){
-	alert("Hello World");
 	$.ajax({
 		url: '/characters/' + id,
 		type: 'PUT',
@@ -92,3 +91,13 @@ function updateCharacter(id){
 		}
 	})
 };
+
+
+/*function selectRole(role){
+  
+  if(role){
+    $("#role-selector").val("TRUE");
+  }else{
+    $("#role-selector").val("FALSE");  
+  }
+}*/

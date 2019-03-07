@@ -19,8 +19,13 @@
 			</select><br>
 
 			Select Role: <select name="role" id="role-selector">
+				{{#if true}}
 				<option value="TRUE">Hero</option>
 				<option value="FALSE">Villain</option>
+				{{else}}
+				<option value="FALSE">Villain</option>
+				<option value="TRUE">Hero</option>
+				{{/if}}
 			</select><br>
 
 			Select Mentor: <select name="mentor_id" id="mentor-selector">
