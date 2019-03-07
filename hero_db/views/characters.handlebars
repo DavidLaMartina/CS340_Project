@@ -75,7 +75,13 @@
             <td>{{real_first_name}}</td>
             <td>{{real_last_name}}</td>
             <td>{{city}}</td>
-            <td>{{role}}</td>
+			
+            <td>{{#if role}}
+				Hero
+				{{else}}
+				Villain
+				{{/if}}
+			</td>
             <td>{{mentor_id}}</td>
             <td><button onclick="deleteCharacter({{character_id}})">Delete</button></td>
             <td><a href="/characters/{{character_id}}">Update</a></td>
