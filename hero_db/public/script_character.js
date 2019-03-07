@@ -78,7 +78,7 @@ function deleteCity(id){
 
 function selectCity(id){
 	$("#city-selector").val(id);
-    
+
 }
 
 function updateCharacter(id){
@@ -87,7 +87,7 @@ function updateCharacter(id){
 		type: 'PUT',
 		data: $('#update-character').serialize(),
 		success: function(result){
-			window.location.replace("./");
+			window.location.replace("/characters");
 		}
 	})
 };

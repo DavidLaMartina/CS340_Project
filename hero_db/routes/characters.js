@@ -21,6 +21,9 @@ var express         = require("express"),
   }
 
   // Display all characters, equipment, and cities
+  router.post("/", function(req, res, next){
+
+  })
 
   router.get("/", function(req, res){
     var callBackCount = 0;
@@ -85,7 +88,7 @@ var express         = require("express"),
   router.get("/:character_id", function(req, res){
     var callBackCount = 0;
     var context = {};
-    context.jsscripts = client_scripts;
+    context.jsscripts = ["selectedCity.js", "selectedMentor.js", "selectedRole.js", "script_character.js"];
     var mysql = req.app.get("mysql");
     getCharacter(res, mysql, context, req.params.character_id, complete);
     read.getEquipment(res, mysql, context, complete);
@@ -103,10 +106,13 @@ var express         = require("express"),
   // Update character entry
   router.put("/:character_id", function(req, res){
     var mysql = req.app.get("mysql");
-    console.log(req.body);
-    console.log(req.params.character_id);
+    if (req.body.role === "TRUE"){
+      var role = true;
+    }else{
+      var role = false;
+    }
     var sql = "UPDATE `Character` SET character_name=?, real_first_name=?, real_last_name=?, city=?, role=?, mentor_id=? WHERE character_id=?";
-    var inserts = [req.body.character_name, req.body.real_first_name, req.body.real_last_name, req.body.city, req.body.role, req.body.mentor_id, req.params.character_id];
+    var inserts = [req.body.character_name, req.body.real_first_name, req.body.real_last_name, req.body.city || null, role, req.body.mentor_id || null, req.params.character_id];
     sql = mysql.pool.query(sql, inserts, function(error, results, fields){
       if(error){
         console.log(error);
