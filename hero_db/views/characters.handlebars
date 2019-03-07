@@ -168,7 +168,12 @@
             <tr>
                 <td>{{city_id}}</td>
                 <td>{{city_name}}</td>
-                <td>{{real_city}}</td>
+				<td>{{#if real_city}}
+				Real
+				{{else}}
+				Fictional
+				{{/if}}
+				</td>
                 <td><button onclick="deleteCity({{city_id}})">DELETE</button></td>
             </tr>
            {{/each}}
