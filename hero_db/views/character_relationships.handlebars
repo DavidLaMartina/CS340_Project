@@ -45,8 +45,8 @@
 				{{# each friendships}}
 				<tr>
 					<td>{{id}}</td>
-					<td>{{friend1_id}}</td>
-					<td>{{friend2_id}}</td>
+					<td>{{friend1_name}}</td>
+					<td>{{friend2_name}}</td>
 					<td><button onclick="deleteFriendship({{id}})">DELETE</button></td>
 				</tr>
 				{{/each}}
@@ -97,8 +97,8 @@
 			{{#each rivalries}}
 			<tr>
 				<td>{{id}}</td>
-				<td>{{rival1_id}}</td>
-				<td>{{rival2_id}}</td>
+				<td>{{rival1_name}}</td>
+				<td>{{rival2_name}}</td>
 				<td><button onclick="deleteRivalry({{id}})">DELETE</button></td>
 			</tr>
 				{{/each}}

@@ -67,7 +67,8 @@
 		<table>
 			<thead>
 				<th>id</th>
-				<th>Power</th>
+				<th>Power Type</th>
+        <th>Magnitude</th>
 				<th>Character</th>
 				<th>Delete a Row</th>
 			</thead>
@@ -75,8 +76,9 @@
 				{{#each character_powers}}
 				<tr>
 					<td>{{id}}</td>
-					<td>{{power_id}}</td>
-					<td>{{character_id}}</td>
+					<td>{{power_type}}</td>
+          <td>{{power_magnitude}}</td>
+					<td>{{character_name}}</td>
 					<td><button onclick ="deleteCharacterPower({{id}})">DELETE</button></td>
 				</tr>
 				{{/each}}
@@ -152,7 +154,8 @@
 		<table>
 			<thead>
 				<th>id</th>
-				<th>Weakness</th>
+				<th>Weakness Type</th>
+        <th>Magnitude</th>
 				<th>Character</th>
 				<th>Delete a Row</th>
 			</thead>
@@ -160,8 +163,9 @@
 				{{#each character_weaknesses}}
 				<tr>
 					<td>{{id}}</td>
-					<td>{{weakness_id}}</td>
-					<td>{{character_id}}</td>
+					<td>{{weakness_type}}</td>
+          <td>{{weakness_magnitude}}</td>
+					<td>{{character_name}}</td>
 					<td><button onclick = "deleteCharacterWeakness({{id}})">DELETE</button></td>
 				</tr>
 				{{/each}}
