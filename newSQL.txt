@@ -24,4 +24,22 @@ character_weaknesses cw LEFT JOIN
 Weakness w ON cw.weakness_id = w.weakness_id LEFT JOIN
 `Character` c ON cw.character_id = c.character_id;
 
+friend relationships
 
+SELECT fr.id, c1.character_name, c2.character_name FROM
+friend_relationship fr LEFT JOIN
+`Character` c1 ON fr.friend1_id = c1.character_id LEFT JOIN
+`Character` c2 ON fr.friend2_id = c2.character_id;
+
+rival relationships
+
+SELECT rr.id, c1.character_name, c2.character_name FROM
+rival_relationship rr LEFT JOIN
+`Character` c1 ON rr.rival1_id = c1.character_id LEFT JOIN
+`Character` c2 ON rr.rival2_id = c2.character_id;
+
+
+
+SELECT bsg_people.character_id as id, fname, lname, bsg_planets.name AS homeworld, age FROM bsg_people INNER JOIN bsg_planets ON homeworld = bsg_planets.planet_id WHERE bsg_people.fname LIKE " + mysql.pool.escape(req.params.s + '%')
+
+SELECT * FROM `Character` WHERE character_name LIKE Batman%;
