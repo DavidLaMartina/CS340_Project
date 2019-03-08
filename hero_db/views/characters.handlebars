@@ -51,7 +51,7 @@
 <!--- this form does not submit directly, the button handles all the interaction with backend -->
     <label> Search by character alter ego</label>
     <input id='alter_ego_search_string' type='text' name='alter_ego_search_string' value=''>
-    <input type="button" value="Search" onclick="searchCharacterByAlterEgo()">
+    <input type="button" value="Search" onclick="searchCharactersByAlterEgo()">
 </form>
 
 
@@ -181,5 +181,6 @@
     </tbody>
 </table>
 <script defer>selectCityFilter({{filtered_city}});</script>
+<script defer>showSearchTerm("{{searched_term}}")</script>
 
 </html>

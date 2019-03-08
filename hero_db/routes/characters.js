@@ -48,9 +48,31 @@ var express         = require("express"),
 
     // Display specifically filtered city in the drop-down, if exists
     context.filtered_city = req.params.city;
-    
+
     var mysql = req.app.get("mysql");
     read.getCharactersByCity(req.params.city, res, mysql, context, complete);
+    read.getEquipment(res, mysql, context, complete);
+    read.getCities(res, mysql, context, complete);
+    function complete(){
+      callbackCount++;
+      if(callbackCount >= 3){
+        res.render("characters", context);
+      }
+    }
+  })
+
+  // Search by alias
+
+  router.get("/search/:search_string", function(req, res){
+    var callbackCount = 0;
+    var context = {}
+    context.jsscripts = client_scripts;
+
+    // Display searched term
+    context.searched_term = req.params.search_string;
+
+    var mysql = req.app.get("mysql");
+    read.getCharactersWithNameLike(req.params.search_string, res, mysql, context, complete);
     read.getEquipment(res, mysql, context, complete);
     read.getCities(res, mysql, context, complete);
     function complete(){

@@ -86,6 +86,12 @@ function selectCityFilter(id){
   }
 }
 
+function showSearchTerm(term){
+  if(term){
+    $("#alter_ego_search_string").val(term);
+  }
+}
+
 function updateCharacter(id){
 	$.ajax({
 		url: '/characters/' + id,
@@ -106,7 +112,19 @@ function filterCharactersByCity(){
   }else{
     window.location = "/characters";
   }
+}
 
+function searchCharactersByAlterEgo(){
+  // Get search string
+  var search_string = document.getElementById("alter_ego_search_string").value;
+
+  if (!search_string || search_string.length === 0){
+    // If empty search box, route to characters page showing all entries
+    window.location = "/characters";
+  }else{
+    // Construct URL and redirect
+    window.location = "/characters/search/" + encodeURI(search_string);
+  }
 }
 
 

@@ -18,13 +18,34 @@ readObj.getCharacters = function(res, mysql, context, complete){
     });
 }
 
+// Query to filter characters by city
+
 readObj.getCharactersByCity = function(city_id, res, mysql, context, complete){
-  var sql = "SELECT c1.character_id, c1.character_name, c1.real_first_name, c1.real_last_name, ci.city_name, c1.role, c2.character_name AS `mentor_name` FROM" +
+  var sql = "SELECT c1.character_id, c1.character_name, c1.real_first_name, c1.real_last_name, ci.city_name, c1.role, c2.character_name AS `mentor_name` FROM " +
     "`Character` c1 LEFT JOIN " +
     "`City` ci ON c1.city = ci.city_id LEFT JOIN " +
     "`Character` c2 ON c1.mentor_id = c2.character_id " +
     "WHERE ci.city_id = ?";
   var inserts = [city_id];
+  sql = mysql.pool.query(sql, inserts, function(error, results, fields){
+    if(error){
+      res.write(JSON.stringify(error));
+      res.end();
+    }
+    context.characters = results;
+    complete();
+  });
+}
+
+// Search characters by string in alter ego (character name)
+
+readObj.getCharactersWithNameLike = function(search_string, res, mysql, context, complete){
+  var sql = "SELECT c1.character_id, c1.character_name, c1.real_first_name, c1.real_last_name, ci.city_name, c1.role, c2.character_name AS `mentor_name` FROM " +
+    "`Character` c1 LEFT JOIN " +
+    "`City` ci ON c1.city = ci.city_id LEFT JOIN " +
+    "`Character` c2 ON c1.mentor_id = c2.character_id " +
+    "WHERE c1.character_name LIKE " + mysql.pool.escape('%' + search_string + '%');
+  var inserts = [search_string];
   sql = mysql.pool.query(sql, inserts, function(error, results, fields){
     if(error){
       res.write(JSON.stringify(error));

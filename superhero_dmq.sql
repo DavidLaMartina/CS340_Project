@@ -18,6 +18,13 @@ SELECT c1.character_id, c1.character_name, c1.real_first_name, c1.real_last_name
   `Character` c2 ON c1.mentor_id = c2.character_id
   WHERE ci.city_id = ?;
 
+-- Character - entries matching search term --
+SELECT c1.character_id, c1.character_name, c1.real_first_name, c1.real_last_name, ci.city_name, c1.role, c2.character_name AS `mentor_name` FROM
+  `Character` c1 LEFT JOIN
+  `City` ci ON c1.city = ci.city_id LEFT JOIN
+  `Character` c2 ON c1.mentor_id = c2.character_id
+  WHERE c1.character_name LIKE '%?%'
+
 -- Equipment - get all entries --
 SELECT equipment_id, equipment_name, description, material, character_name FROM
   `Equipment` e LEFT JOIN
