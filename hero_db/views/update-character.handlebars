@@ -1,7 +1,7 @@
 <html>
 
 	<h1>Update {{character.character_name}}</h1>
-	<form id="update-character" action="/characters/{{character_id}}" method="GET">
+	<form id="update-character" action="/characters/{{character_id}}" name="update_form" method="GET" >
 
 		<fieldset>
 			<legend>Characters</legend>
@@ -34,10 +34,11 @@
                 <option value="{{character_id}}">{{character_name}}</option>
 				{{/each}}
 			</select><br>
-				<button onclick="updateCharacter({{character.character_id}})">Update</button>
+				<input type="button" onclick="if(validateCharacterName()){updateCharacter({{character.character_id}})}" value="Update">
 				<script defer>selectCity({{character.city}});</script>
         <script defer>selectRole({{character.role}});</script>
         <script defer>selectMentor({{character.mentor_id}});</script>
+		<p id = "character_message"></p>
 		</fieldset>
 	</form>
 </html>
