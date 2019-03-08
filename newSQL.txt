@@ -1,0 +1,27 @@
+SELECT c1.character_id, c1.character_name, c1.real_first_name, c1.real_last_name, ci.city_name, c1.role, c2.character_name AS "mentor_name" FROM
+`Character` c1 LEFT JOIN
+City ci ON c1.city = ci.city_id LEFT JOIN
+`Character` c2 ON c1.mentor_id = c2.character_id; 
+
+
+Equipment
+
+SELECT equipment_id, equipment_name, description, material, character_name FROM
+`Equipment` e LEFT JOIN
+`Character` c ON e.character_id = c.character_id;
+
+character powers
+
+SELECT cp.id, p.power_type, p.power_magnitude, c.character_name FROM
+character_powers cp LEFT JOIN
+Power p ON p.power_id = cp.power_id LEFT JOIN
+`Character` c ON cp.character_id = c.character_id;
+
+character weaknesses
+
+SELECT cw.id, w.weakness_type, w.weakness_magnitude, c.character_name FROM
+character_weaknesses cw LEFT JOIN
+Weakness w ON cw.weakness_id = w.weakness_id LEFT JOIN
+`Character` c ON cw.character_id = c.character_id;
+
+

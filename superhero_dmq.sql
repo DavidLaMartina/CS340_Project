@@ -3,10 +3,27 @@
  -- In all cases, colon : character is used to denote variables that will be
 -- passed into a wrapper function in the backend programming language
 
--- SELECT queries to grab entire table contents for display in character, equipment
--- and city tables
-SELECT * FROM `Character`;
-SELECT * FROM Equipment;
+-- SELECT queries for characters page (Character, Equipment, City tables)
+
+-- Character - get all entries --
+SELECT c1.character_id, c1.character_name, c1.real_first_name, c1.real_last_name, ci.city_name, c1.role, c2.character_name AS `mentor_name` FROM
+  `Character` c1 LEFT JOIN
+  `City` ci ON c1.city = ci.city_id LEFT JOIN
+  `Character` c2 ON c1.mentor_id = c2.character_id;
+
+-- Character - entries filtered by city --
+SELECT c1.character_id, c1.character_name, c1.real_first_name, c1.real_last_name, ci.city_name, c1.role, c2.character_name AS `mentor_name` FROM
+  `Character` c1 LEFT JOIN
+  `City` ci ON c1.city = ci.city_id LEFT JOIN
+  `Character` c2 ON c1.mentor_id = c2.character_id
+  WHERE ci.city_id = ?;
+
+-- Equipment - get all entries --
+SELECT equipment_id, equipment_name, description, material, character_name FROM
+  `Equipment` e LEFT JOIN
+  `Character` c ON e.character_id = c.character_id;
+
+-- City - get all entries --
 SELECT * FROM City;
 
 -- INSERT queries for Character, Equipment, and City tables
@@ -28,19 +45,20 @@ UPDATE `Character` SET character_name = :cnInput,
                      mentor_id = :mInput
 WHERE id = :iInput;
 
-
 -- DELETE query for Character, Equipment, and City tables
 DELETE FROM `Character` WHERE id = :iInput
 DELETE FROM Equipment WHERE id = :iInput
 DELETE FROM City WHERE id = :iInput
 
 
-
 /* Queries for Friendships and Rivalries Web Page   */
 
 -- Query for displaying friend_relationship table
 
-SELECT * FROM friend_relationship;
+SELECT fr.id, c1.character_name AS friend1_name, c2.character_name AS friend2_name FROM
+  friend_relationship fr LEFT JOIN
+  `Character` c1 ON fr.friend1_id = c1.character_id LEFT JOIN
+  `Character` c2 ON fr.friend2_id = c2.character_id;
 
 -- Query to delete a row from the friend_relationship table
 DELETE FROM friend_relationship WHERE id = :id_num_of_row_to_delete;
@@ -51,7 +69,11 @@ INSERT INTO friend_relationship (friend1_id, friend2_id) VALUES (:character1_inp
 
 -- Select query for displaying rival_relationship
 
-SELECT * FROM rival_relationship;
+SELECT rr.id, c1.character_name AS rival1_name, c2.character_name AS rival2_name FROM
+  rival_relationship rr LEFT JOIN
+  `Character` c1 ON rr.rival1_id = c1.character_id LEFT JOIN
+  `Character` c2 ON rr.rival2_id = c2.character_id;
+
 
 -- Query to delete a row from the rival_relationship
 
@@ -72,7 +94,10 @@ SELECT * FROM Power;
 
 -- Query to display the current character_power table
 
-SELECT * FROM character_powers;
+SELECT cp.id, p.power_type, p.power_magnitude, c.character_name FROM
+  character_powers cp LEFT JOIN
+  Power p ON p.power_id = cp.power_id LEFT JOIN
+  `Character` c ON cp.character_id = c.character_id;
 
 -- Query to insert a row into the character_powers table
 INSERT INTO character_powers (power_id, character_id) VALUES (:power_id_input, :character_id_input);
@@ -94,12 +119,11 @@ INSERT INTO character_weaknesses (weakness_id, character_id) VALUES (:input_weak
 
 -- Query to show the content of the character_weaknesses table
 
-SELECT * FROM character_weaknesses;
+SELECT cw.id, w.weakness_type, w.weakness_magnitude, c.character_name FROM
+  character_weaknesses cw LEFT JOIN
+  Weakness w ON cw.weakness_id = w.weakness_id LEFT JOIN
+  `Character` c ON cw.character_id = c.character_id;
 
 -- Query to delete a row from the character_weaknesses table
 
 DELETE FROM character_weaknesses WHERE id = :id_num_of_row_to_delete;
-
-
-
-
