@@ -78,7 +78,12 @@ function deleteCity(id){
 
 function selectCity(id){
 	$("#city-selector").val(id);
+}
 
+function selectCityFilter(id){
+  if(id){
+    $("#city_filter").val(id);
+  }
 }
 
 function updateCharacter(id){
@@ -92,12 +97,24 @@ function updateCharacter(id){
 	})
 };
 
+function filterCharactersByCity(){
+  // Get id of selected city from dropdown
+  var city_filter = document.getElementById("city_filter");
+  // Construct URL and redirect
+  if(city_filter.value){
+    window.location = "/characters/filter/" + city_filter.value;
+  }else{
+    window.location = "/characters";
+  }
+
+}
+
 
 /*function selectRole(role){
-  
+
   if(role){
     $("#role-selector").val("TRUE");
   }else{
-    $("#role-selector").val("FALSE");  
+    $("#role-selector").val("FALSE");
   }
 }*/

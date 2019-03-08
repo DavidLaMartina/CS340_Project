@@ -39,11 +39,12 @@
 <!--- this form does not submit directly, the button handles all the interaction with backend -->
     <label> Filter by city </label>
     <select id='city_filter' name="city_filter">
+        <option></option>
         {{#each cities}}
         <option value="{{city_id}}">{{city_name}}</option>
         {{/each}}
     </select><br>
-    <input type="button" value="Filter" onclick="filterCity()">
+    <input type="button" value="Filter" onclick="filterCharactersByCity()">
 </form>
 
 <form id='search_characters_alter_ego' action='' method=''>
@@ -61,9 +62,9 @@
         <th>Alter Ego</th>
         <th>Real First Name</th>
         <th>Real Last Name </th>
-        <th>City ID</th>
+        <th>City</th>
         <th>Role</th>
-        <th>Mentor ID</th>
+        <th>Mentor</th>
         <th>Delete a Row</th>
         <th>Update a Row</th>
     </thead>
@@ -74,15 +75,15 @@
             <td>{{character_name}}</td>
             <td>{{real_first_name}}</td>
             <td>{{real_last_name}}</td>
-            <td>{{city}}</td>
-			
+            <td>{{city_name}}</td>
+
             <td>{{#if role}}
-				Hero
-				{{else}}
-				Villain
-				{{/if}}
-			</td>
-            <td>{{mentor_id}}</td>
+      				Hero
+      				{{else}}
+      				Villain
+      				{{/if}}
+	          </td>
+            <td>{{mentor_name}}</td>
             <td><button onclick="deleteCharacter({{character_id}})">Delete</button></td>
             <td><a href="/characters/{{character_id}}">Update</a></td>
         </tr>
@@ -179,6 +180,6 @@
            {{/each}}
     </tbody>
 </table>
-
+<script defer>selectCityFilter({{filtered_city}});</script>
 
 </html>

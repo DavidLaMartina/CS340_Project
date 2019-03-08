@@ -20,10 +20,7 @@ var express         = require("express"),
     });
   }
 
-  // Display all characters, equipment, and cities
-  router.post("/", function(req, res, next){
-
-  })
+  // Display all characters, equipment and cities
 
   router.get("/", function(req, res){
     var callBackCount = 0;
@@ -41,6 +38,28 @@ var express         = require("express"),
       }
     }
   });
+
+  // Filter by city
+
+  router.get("/filter/:city", function(req, res){
+    var callbackCount = 0;
+    var context = {};
+    context.jsscripts = client_scripts;
+
+    // Display specifically filtered city in the drop-down, if exists
+    context.filtered_city = req.params.city;
+    
+    var mysql = req.app.get("mysql");
+    read.getCharactersByCity(req.params.city, res, mysql, context, complete);
+    read.getEquipment(res, mysql, context, complete);
+    read.getCities(res, mysql, context, complete);
+    function complete(){
+      callbackCount++;
+      if(callbackCount >= 3){
+        res.render("characters", context);
+      }
+    }
+  })
 
   // Create new character
 
@@ -104,6 +123,7 @@ var express         = require("express"),
   });
 
   // Update character entry
+
   router.put("/:character_id", function(req, res){
     var mysql = req.app.get("mysql");
     if (req.body.role === "TRUE"){

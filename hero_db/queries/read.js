@@ -2,8 +2,43 @@ var readObj = {}
 
 // Query all characters
 
+// readObj.getCharacters = function(res, mysql, context, complete){
+//   mysql.pool.query("SELECT * FROM `Character`", function(error, results, fields){
+//     if(error){
+//       res.write(JSON.stringify(error));
+//       res.end();
+//     }
+//     context.characters = results;
+//     complete();
+//   });
+// }
+
+// Query all Characters, using LEFT JOIN to include actual city name and mentor name
+
 readObj.getCharacters = function(res, mysql, context, complete){
-  mysql.pool.query("SELECT * FROM `Character`", function(error, results, fields){
+  mysql.pool.query(
+    "SELECT c1.character_id, c1.character_name, c1.real_first_name, c1.real_last_name, ci.city_name, c1.role, c2.character_name AS `mentor_name` FROM" +
+      "`Character` c1 LEFT JOIN " +
+      "`City` ci ON c1.city = ci.city_id LEFT JOIN" +
+      "`Character` c2 ON c1.mentor_id = c2.character_id",
+    function(error, results, fields){
+      if(error){
+        res.write(JSON.stringify(error));
+        res.end();
+      }
+      context.characters = results;
+      complete();
+    });
+}
+
+readObj.getCharactersByCity = function(city_id, res, mysql, context, complete){
+  var sql = "SELECT c1.character_id, c1.character_name, c1.real_first_name, c1.real_last_name, ci.city_name, c1.role, c2.character_name AS `mentor_name` FROM" +
+    "`Character` c1 LEFT JOIN " +
+    "`City` ci ON c1.city = ci.city_id LEFT JOIN " +
+    "`Character` c2 ON c1.mentor_id = c2.character_id " +
+    "WHERE ci.city_id = ?";
+  var inserts = [city_id];
+  sql = mysql.pool.query(sql, inserts, function(error, results, fields){
     if(error){
       res.write(JSON.stringify(error));
       res.end();
