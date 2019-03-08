@@ -101,3 +101,21 @@ function updateCharacter(id){
     $("#role-selector").val("FALSE");  
   }
 }*/
+
+//reference = https://www.w3schools.com/js/js_validation.asp
+function validateCharacterName(){
+	var name, text;
+	text = "";
+	document.getElementById("character_message").innerHTML = text;
+	//Get value from input field
+	name = document.forms["update_form"]["character_name"].value;
+	if(name == null || name == '')
+	{
+		text = "The Character Name cannot be blank";
+		document.getElementById("character_message").innerHTML = text;
+		return false;
+	}
+	//set a message for the user in the form
+	document.getElementById("character_message").innerHTML = text;
+	return true;
+}
