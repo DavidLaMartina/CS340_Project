@@ -124,17 +124,6 @@ readObj.getCharacterWeaknesses = function(req, mysql, context, complete){
 
 // Query all friend relationships
 
-// readObj.getFriendRelationships = function(req, mysql, context, complete){
-//   mysql.pool.query("SELECT * FROM friend_relationship", function(error, results, fields){
-//     if(error){
-//       res.write(JSON.stringify(error));
-//       res.end();
-//     }
-//     context.friendships = results;
-//     complete();
-//   });
-// }
-
 readObj.getFriendRelationships = function(req, mysql, context, complete){
   mysql.pool.query("SELECT fr.id, c1.character_name AS friend1_name, c2.character_name AS friend2_name FROM " +
     "friend_relationship fr LEFT JOIN " +
@@ -149,6 +138,8 @@ readObj.getFriendRelationships = function(req, mysql, context, complete){
     });
 }
 
+// Query all rival relationships
+
 readObj.getRivalRelationships = function(req, mysql, context, complete){
   mysql.pool.query("SELECT rr.id, c1.character_name AS rival1_name, c2.character_name AS rival2_name FROM " +
     "rival_relationship rr LEFT JOIN " +
@@ -162,18 +153,5 @@ readObj.getRivalRelationships = function(req, mysql, context, complete){
       complete();
     });
 }
-
-// Query all rival relationships
-
-// readObj.getRivalRelationships = function(req, mysql, context, complete){
-//   mysql.pool.query("SELECT * FROM rival_relationship", function(error, results, fields){
-//     if(error){
-//       res.write(JSON.stringify(error));
-//       res.end();
-//     }
-//     context.rivalries = results;
-//     complete();
-//   });
-// }
 
 module.exports = readObj;
