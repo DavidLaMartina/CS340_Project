@@ -19,6 +19,47 @@ var express         = require("express"),
       }
     });
   }
+  
+  function checkRoleAndName(res, mysql, mentor_id, character_name, role){
+	var callBackCount = 0;
+	var check;
+	console.log("Here is mentor_id, character_name, and role " + mentor_id + " " + character_name + " " + role);
+    var context = {}
+	function complete(){
+      callBackCount++;
+      if(callBackCount >= 1){
+        //console.log(context);
+        console.log("I am done");
+		return check;
+      }
+    }
+    var sql = "SELECT * FROM `Character` WHERE character_id = ?";
+    var inserts = [mentor_id];
+    mysql.pool.query(sql, inserts, function(error, results, fields){
+      if(error){
+        res.write(JSON.stringify(error));
+        res.end();
+		check = false;
+		return check;
+      }else{
+        context.character = results[0].character_name;
+		context.role = results[0].role;
+		console.log("Here is context.character and context.role " + context.character + " " + context.role);
+		if(context.role != role)
+		{
+			console.log("I am in the false limb");
+			check = false;
+			complete();
+		}
+		else{
+			console.log("I am in the true limb");
+			check = true;
+			complete();
+		}	
+      }
+    });
+    console.log("I finished the function");
+  }
 
   // Display all characters, equipment and cities
 
@@ -33,7 +74,7 @@ var express         = require("express"),
     function complete(){
       callBackCount++;
       if(callBackCount >= 3){
-        console.log(context);
+        //console.log(context);
         res.render("characters", context);
       }
     }
@@ -86,8 +127,8 @@ var express         = require("express"),
   // Create new character
 
   router.post("/addCharacter", function(req, res){
-    console.log(req.body.character_name);
-    console.log(req.body);
+    //console.log(req.body.character_name);
+    //console.log(req.body);
     var mysql = req.app.get("mysql");
     var sql = "INSERT INTO `Character` (character_name, real_first_name, real_last_name, city, role, mentor_id) VALUES (?, ?, ?, ?, ?, ?)";
     if(req.body.role === "TRUE"){
@@ -95,22 +136,39 @@ var express         = require("express"),
     }else{
       var role = false;
     }
-    var inserts = [req.body.character_name, req.body.real_first_name, req.body.real_last_name, req.body.city || null, role, req.body.mentor_id || null];
-    sql = mysql.pool.query(sql, inserts, function(error, results, fields){
-      if(error){
-        res.write(JSON.stringify(error));
-        res.end();
-      }else{
-        res.redirect("/characters");
-      }
-    });
+	if(req.body.mentor_id){
+		var check = checkRoleAndName(res, mysql, req.body.mentor_id, req.body.character_name, role);
+		console.log("Here is the value of check " + check);
+		if(check){
+			var inserts = [req.body.character_name, req.body.real_first_name, req.body.real_last_name, req.body.city || null, role, req.body.mentor_id || null];
+			sql = mysql.pool.query(sql, inserts, function(error, results, fields){
+			if(error){
+				res.write(JSON.stringify(error));
+				res.end();
+			}else{
+				res.redirect("/characters");
+			}
+			});
+		}
+	}
+	else{
+		var inserts = [req.body.character_name, req.body.real_first_name, req.body.real_last_name, req.body.city || null, role, req.body.mentor_id || null];
+		sql = mysql.pool.query(sql, inserts, function(error, results, fields){
+		if(error){
+			res.write(JSON.stringify(error));
+			res.end();
+		}else{
+			res.redirect("/characters");
+		}
+		});
+	}
   });
 
   // Delete character
 
   router.delete("/deleteCharacter/:character_id", function(req, res){
     var mysql = req.app.get("mysql");
-    console.log(req.params);
+    //console.log(req.params);
     var sql = "DELETE FROM `Character` WHERE character_id = ?";
     var inserts = [req.params.character_id];
     sql = mysql.pool.query(sql, inserts, function(error, results, fields){
@@ -138,7 +196,7 @@ var express         = require("express"),
     function complete(){
       callBackCount++;
       if(callBackCount >= 4){
-        console.log(context);
+        //console.log(context);
         res.render("update-character", context);
       }
     }
@@ -157,7 +215,7 @@ var express         = require("express"),
     var inserts = [req.body.character_name, req.body.real_first_name, req.body.real_last_name, req.body.city || null, role, req.body.mentor_id || null, req.params.character_id];
     sql = mysql.pool.query(sql, inserts, function(error, results, fields){
       if(error){
-        console.log(error);
+        //console.log(error);
         res.write(JSON.stringify(error));
         res.end();
       }else{
