@@ -33,7 +33,7 @@ var express         = require("express"),
 
       }else{
 		//put the mentor's name in context.character
-        context.character = results[0].character_name;
+        	context.character = results[0].character_name;
 		//put the mentor's role in context.role
 		context.role = results[0].role;
 		//first we check to see if the roles are the same
