@@ -136,10 +136,10 @@ var express         = require("express"),
   router.post("/addCharacter", function(req, res){
     //console.log(req.body.character_name);
     //console.log(req.body);
-	var callbackCount = 0;
-	//create a check object so that check.value can be passed by reference
-	//set check.vaue to false
-	var check = {value: "false"};
+    var callbackCount = 0;
+    //create a check object so that check.value can be passed by reference
+    //set check.vaue to false
+    var check = {value: "false"};
 	
     var mysql = req.app.get("mysql");
     var sql = "INSERT INTO `Character` (character_name, real_first_name, real_last_name, city, role, mentor_id) VALUES (?, ?, ?, ?, ?, ?)";
