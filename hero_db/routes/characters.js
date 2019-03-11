@@ -5,6 +5,7 @@ var express         = require("express"),
     client_scripts  = ["script_character.js"];
 
   // Get specific character entry
+ 
 
   function getCharacter(res, mysql, context, character_id, complete){
     var sql = "SELECT * FROM `Character` WHERE character_id = ?";
@@ -20,40 +21,46 @@ var express         = require("express"),
     });
   }
   
-  function checkRoleAndName(res, mysql, mentor_id, character_name, role){
-	var callBackCount = 0;
-	var check;
-	console.log("Here is mentor_id, character_name, and role " + mentor_id + " " + character_name + " " + role);
+  function checkRoleAndName(res, mysql, mentor_id, character_name, role, check, complete){ 
     var context = {}
-	function complete(){
-      callBackCount++;
-      if(callBackCount >= 1){
-        //console.log(context);
-        console.log("I am done");
-		return check;
-      }
-    }
+
     var sql = "SELECT * FROM `Character` WHERE character_id = ?";
     var inserts = [mentor_id];
     mysql.pool.query(sql, inserts, function(error, results, fields){
       if(error){
         res.write(JSON.stringify(error));
         res.end();
-		check = false;
-		return check;
+
       }else{
+		//put the mentor's name in context.character
         context.character = results[0].character_name;
+		//put the mentor's role in context.role
 		context.role = results[0].role;
-		console.log("Here is context.character and context.role " + context.character + " " + context.role);
+		//first we check to see if the roles are the same
 		if(context.role != role)
 		{
-			console.log("I am in the false limb");
-			check = false;
+			//the roles were not the same so this character will not be created.
+			console.log("The roles of the character and the mentor are not the same");
+			console.log("This character will not be added");
+			//check.value will be set to false
+			check.value = "false";
 			complete();
 		}
 		else{
-			console.log("I am in the true limb");
-			check = true;
+			//the roles were the same but now we need to check the names
+			// and make sure they are not the same
+			//first we convert the names to lower case
+			if(context.character.toLowerCase() === character_name.toLowerCase()){
+				check.value = "false";
+				console.log("The character and the mentor names are the same.");
+				console.log("The new character will not be the created");
+			}
+			else{
+				//check.value is set to true because the roles are the same and names are different.
+				check.value = "true";
+				console.log("Looks like the roles are the same and the names are different");
+				console.log("The entry is valid and the character will be created");
+			}
 			complete();
 		}	
       }
@@ -129,6 +136,11 @@ var express         = require("express"),
   router.post("/addCharacter", function(req, res){
     //console.log(req.body.character_name);
     //console.log(req.body);
+	var callbackCount = 0;
+	//create a check object so that check.value can be passed by reference
+	//set check.vaue to false
+	var check = {value: "false"};
+	
     var mysql = req.app.get("mysql");
     var sql = "INSERT INTO `Character` (character_name, real_first_name, real_last_name, city, role, mentor_id) VALUES (?, ?, ?, ?, ?, ?)";
     if(req.body.role === "TRUE"){
@@ -136,21 +148,34 @@ var express         = require("express"),
     }else{
       var role = false;
     }
+	//we only need to do a check if a mentor_id is submitted when trying to create a character. 
 	if(req.body.mentor_id){
-		var check = checkRoleAndName(res, mysql, req.body.mentor_id, req.body.character_name, role);
-		console.log("Here is the value of check " + check);
-		if(check){
-			var inserts = [req.body.character_name, req.body.real_first_name, req.body.real_last_name, req.body.city || null, role, req.body.mentor_id || null];
-			sql = mysql.pool.query(sql, inserts, function(error, results, fields){
-			if(error){
-				res.write(JSON.stringify(error));
-				res.end();
-			}else{
+		//call the checkRoleAndName function 
+		checkRoleAndName(res, mysql, req.body.mentor_id, req.body.character_name, role, check, complete);
+		
+		function complete(){
+			callbackCount++;
+			if(callbackCount >= 1 && check.value == "false"){
+				//if check.value is false then we just redirect back to the Character page
+				// a new character WILL NOT be created. 
 				res.redirect("/characters");
 			}
-			});
+			// otherwise, if the check.value is true then we are going to create the new Character.
+			else if (callbackCount >= 1 && check.value == "true"){
+				var inserts = [req.body.character_name, req.body.real_first_name, req.body.real_last_name, req.body.city || null, role, req.body.mentor_id || null];
+				sql = mysql.pool.query(sql, inserts, function(error, results, fields){
+					if(error){
+						res.write(JSON.stringify(error));
+						res.end();
+					}
+					else{
+						res.redirect("/characters");
+					}
+				});
+			}
 		}
 	}
+	//the user did not enter a mentor_id so we can insert the Character. 
 	else{
 		var inserts = [req.body.character_name, req.body.real_first_name, req.body.real_last_name, req.body.city || null, role, req.body.mentor_id || null];
 		sql = mysql.pool.query(sql, inserts, function(error, results, fields){
