@@ -51,3 +51,46 @@ function deleteRivalry(id){
 		}
 	})
 };
+
+//reference = https://www.w3schools.com/js/js_validation.asp
+function validateFriendship(){
+    var friend1, friend2, text;
+    text = "";
+    document.getElementById("friendship_message").innerHTML = text;
+    //Get value from input field
+    friend1 = document.forms["friendship_form"]["friend1_id"].value;
+    friend2 = document.forms["friendship_form"]["friend2_id"].value;
+    if(friend1 == friend2)
+    {
+        text = "Characters cannot be friends with themselves";
+        document.getElementById("friendship_message").innerHTML = text;
+        return false;
+    }
+    else
+    {
+        return true;
+    }
+    //set a message for the user in the form
+    document.getElementById("friendship_message").innerHTML = text;
+}
+
+function validateRivalry(){
+    var rival1, rival2, text;
+    text = "";
+    document.getElementById("rivalry_message").innerHTML = text;
+    //Get value from input field
+    rival1 = document.forms["rivalry_form"]["rival1_id"].value;
+    rival2 = document.forms["rivalry_form"]["rival2_id"].value;
+    if(rival1 == rival2)
+    {
+        text = "Characters cannot be rivals with themselves";
+        document.getElementById("rivalry_message").innerHTML = text;
+        return false;
+    }
+    else
+    {
+        return true;
+    }
+    //set a message for the user in the form
+    document.getElementById("rivalry_message").innerHTML = text;
+}
