@@ -5,7 +5,7 @@ var express         = require("express"),
     client_scripts  = ["script_character.js"];
 
   // Get specific character entry
- 
+
 
   function getCharacter(res, mysql, context, character_id, complete){
     var sql = "SELECT * FROM `Character` WHERE character_id = ?";
@@ -20,8 +20,8 @@ var express         = require("express"),
       }
     });
   }
-  
-  function checkRoleAndName(res, mysql, mentor_id, character_name, role, check, complete){ 
+
+  function checkRoleAndName(res, mysql, mentor_id, character_name, role, check, complete){
     var context = {}
 
     var sql = "SELECT * FROM `Character` WHERE character_id = ?";
@@ -43,7 +43,7 @@ var express         = require("express"),
 			console.log("The roles of the character and the mentor are not the same");
 			console.log("This character will not be added");
 			//check.value will be set to false
-			check.value = "false";
+			check.value = false;
 			complete();
 		}
 		else{
@@ -51,18 +51,18 @@ var express         = require("express"),
 			// and make sure they are not the same
 			//first we convert the names to lower case
 			if(context.character.toLowerCase() === character_name.toLowerCase()){
-				check.value = "false";
+				check.value = false;
 				console.log("The character and the mentor names are the same.");
 				console.log("The new character will not be the created");
 			}
 			else{
 				//check.value is set to true because the roles are the same and names are different.
-				check.value = "true";
+				check.value = true;
 				console.log("Looks like the roles are the same and the names are different");
 				console.log("The entry is valid and the character will be created");
 			}
 			complete();
-		}	
+		}
       }
     });
     console.log("I finished the function");
@@ -139,29 +139,30 @@ var express         = require("express"),
     var callbackCount = 0;
     //create a check object so that check.value can be passed by reference
     //set check.vaue to false
-    var check = {value: "false"};
-	
+    var check = {value: false};
+
     var mysql = req.app.get("mysql");
     var sql = "INSERT INTO `Character` (character_name, real_first_name, real_last_name, city, role, mentor_id) VALUES (?, ?, ?, ?, ?, ?)";
-    if(req.body.role === "TRUE"){
+    if(req.body.role === true){
       var role = true;
     }else{
       var role = false;
     }
-	//we only need to do a check if a mentor_id is submitted when trying to create a character. 
+	//we only need to do a check if a mentor_id is submitted when trying to create a character.
 	if(req.body.mentor_id){
-		//call the checkRoleAndName function 
+		//call the checkRoleAndName function
 		checkRoleAndName(res, mysql, req.body.mentor_id, req.body.character_name, role, check, complete);
-		
+
 		function complete(){
 			callbackCount++;
-			if(callbackCount >= 1 && check.value == "false"){
+			if(callbackCount >= 1 && check.value == false){
 				//if check.value is false then we just redirect back to the Character page
-				// a new character WILL NOT be created. 
+				// a new character WILL NOT be created.
+        req.flash("error", "Characters cannot be mentors to themselves.");
 				res.redirect("/characters");
 			}
 			// otherwise, if the check.value is true then we are going to create the new Character.
-			else if (callbackCount >= 1 && check.value == "true"){
+			else if (callbackCount >= 1 && check.value == true){
 				var inserts = [req.body.character_name, req.body.real_first_name, req.body.real_last_name, req.body.city || null, role, req.body.mentor_id || null];
 				sql = mysql.pool.query(sql, inserts, function(error, results, fields){
 					if(error){
@@ -175,7 +176,7 @@ var express         = require("express"),
 			}
 		}
 	}
-	//the user did not enter a mentor_id so we can insert the Character. 
+	//the user did not enter a mentor_id so we can insert the Character.
 	else{
 		var inserts = [req.body.character_name, req.body.real_first_name, req.body.real_last_name, req.body.city || null, role, req.body.mentor_id || null];
 		sql = mysql.pool.query(sql, inserts, function(error, results, fields){
@@ -231,7 +232,7 @@ var express         = require("express"),
 
   router.put("/:character_id", function(req, res){
     var mysql = req.app.get("mysql");
-    if (req.body.role === "TRUE"){
+    if (req.body.role === true){
       var role = true;
     }else{
       var role = false;
@@ -287,7 +288,7 @@ var express         = require("express"),
   router.post("/addCity", function(req, res){
     var mysql = req.app.get("mysql");
     var sql = "INSERT INTO `City` (city_name, real_city) VALUES (?, ?)";
-    if(req.body.real_city === "TRUE"){
+    if(req.body.real_city === true){
       var real_city = true;
     }else{
       var real_city = false;
