@@ -1,6 +1,9 @@
-var express     = require("express"),
-    mysql       = require("./dbcon.js"),
-    bodyParser  = require("body-parser");
+var express       = require("express"),
+    session       = require("express-session"),
+    cookieParser  = require("cookie-parser"),
+    flash         = require("connect-flash")
+    mysql         = require("./dbcon.js"),
+    bodyParser    = require("body-parser");
 
 var app         = express(),
     handlebars  = require("express-handlebars").create({defaultLayout: "main"});
@@ -12,6 +15,18 @@ app.use("/", express.static("public"));
 app.set("view engine", "handlebars");
 app.set("port", process.argv[2]);
 app.set("mysql", mysql);
+
+// Make flash messages work
+app.use(cookieParser('secret'));
+app.use(session({cookie: {maxAge: 60000}}));
+app.use(flash());
+
+app.use(function(req, res, next){
+  res.locals.currentUser = req.user;
+  res.locals.error = req.flash("error");
+  res.locals.success = req.flash("success");
+  next();
+})
 
 // Requiring routes -- enables use of express.Router()
 app.use("/", require("./routes/index.js"));
