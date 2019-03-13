@@ -4,13 +4,14 @@
 <p>
 	<button type="button" id='toggle1' onclick="friendshipFunc()">Add a Friendship between Characters</button>
 </p>
-	<form action = "/character_relationships/addFriendship" method="post" id="addFriendship">
+	<form action = "/character_relationships/addFriendship" method="post" id="addFriendship" name="friendship_form"
+		onsubmit="return validateFriendship()">
 		<fieldset>
 			<legend>Character Friendships</legend>
 				<div>
 					<p><span style="color:blue">This database DOES allow heroes and villains to be friends.</span></p>
 					<p>Select Character 1
-					<select name="friend1_id">
+					<select name="friend1_id" id="friend1_id">
                     {{#each characters}}
 						<option value="{{character_id}}">{{character_name}}</option>
                     {{/each}}
@@ -19,7 +20,7 @@
 				</div>
 				<div>
 					<p>Select Character 2
-					<select name="friend2_id">
+					<select name="friend2_id" id="friend2_id">
                     {{#each characters}}
 						<option value="{{character_id}}">{{character_name}}</option>
                     {{/each}}
@@ -29,6 +30,7 @@
 				<div>
 					<input type="submit" value="Submit">
 				</div>
+				<p id = "friendship_message"></p>
 		</fieldset>
 	</form>
 	<h3>Here are the current contents of Friend Relationship</h3>
@@ -54,13 +56,14 @@
 	<p>
 		<button type="button" id='toggle2' onclick="rivalFunc()">Add a Rivalry between Characters</button>
 	</p>
-	<form action = "/character_relationships/addRivalry" method="post" id="addRivalry">
+	<form action = "/character_relationships/addRivalry" method="post" id="addRivalry" name="rivalry_form"
+	    onsubmit="return validateRivalry()">
 		<fieldset>
 			<legend>Rivalry</legend>
 				<div>
 					<p><span style="color:blue">This database DOES allow heroes to be rivals with other heroes and the same with villains.</span></p>
 					<p>Select Character 1
-					<select name="rival1_id">
+					<select name="rival1_id" id="rival1_id">
                     {{#each characters}}
 						<option value="{{character_id}}">{{character_name}}</option>
                     {{/each}}
@@ -69,7 +72,7 @@
 				</div>
 				<div>
 					<p>Select Character 2
-						<select name="rival2_id">
+						<select name="rival2_id" id="rival2_id">
 						{{#each characters}}
 							<option value="{{character_id}}">{{character_name}}</option>
 						{{/each}}
@@ -79,6 +82,7 @@
 				<div>
 					<input type="submit" value="Submit">
 				</div>
+				<p id = "rivalry_message"></p>
 		</fieldset>
 	</form>
 	<h3>Here are the current contents of Rival Relationship</h3>
