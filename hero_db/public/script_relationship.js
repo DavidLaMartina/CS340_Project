@@ -2,6 +2,8 @@ window.onload = function()
 {
 			document.getElementById('addFriendship').style.display='none';
 			document.getElementById('addRivalry').style.display='none';
+      document.getElementById('friendship_message').style.display='none';
+      document.getElementById('rivalry_message').style.display='none';
 }
 
 function friendshipFunc(){
@@ -63,6 +65,7 @@ function validateFriendship(){
     if(friend1 == friend2)
     {
         text = "Characters cannot be friends with themselves";
+        document.getElementById("friendship_message").style.display='block';
         document.getElementById("friendship_message").innerHTML = text;
         return false;
     }
@@ -84,6 +87,7 @@ function validateRivalry(){
     if(rival1 == rival2)
     {
         text = "Characters cannot be rivals with themselves";
+        document.getElementById('rivalry_message').style.display='block';
         document.getElementById("rivalry_message").innerHTML = text;
         return false;
     }
