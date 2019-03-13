@@ -23,6 +23,7 @@
 			<th>id</th>
 			<th>Power Type</th>
 			<th>Power Magnitude</th>
+      <th>Delete Power</th>
 		</thead>
 		<tbody>
 			{{#each powers}}
@@ -30,6 +31,7 @@
 				<td>{{power_id}}</td>
 				<td>{{power_type}}</td>
 				<td>{{power_magnitude}}</td>
+        <td><button onclick ="deletePower({{power_id}})">DELETE</button></td>
 			</tr>
 			{{/each}}
 		</tbody>
@@ -108,6 +110,7 @@
 				<th>id</th>
 				<th>Weakness Type</th>
 				<th>Weakness Magnitude</th>
+        <th>Delete Weakness</th>
 			</thead>
 			<tbody>
 				{{#each weaknesses}}
@@ -115,6 +118,7 @@
 					<td>{{weakness_id}}</td>
 					<td>{{weakness_type}}</td>
 					<td>{{weakness_magnitude}}</td>
+          <td><button onclick ="deleteWeakness({{weakness_id}})">DELETE</button></td>
 				</tr>
 				{{/each}}
 			</tbody>

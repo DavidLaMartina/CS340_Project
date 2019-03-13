@@ -48,7 +48,7 @@ function weaknessFunc(){
     else{
         change.innerHTML = "Add a Weakness";
         document.getElementById('addWeakness').style.display='none';
-		
+
     }
 }
 
@@ -97,6 +97,26 @@ function validatePowerNumber(){
 	//set a message for the user in the form
 	document.getElementById("power_message").innerHTML = text;
 }
+
+function deletePower(id){
+  $.ajax({
+    url: '/powers_weaknesses/deletePower/' + id,
+    type: 'DELETE',
+    success: function(result){
+      window.location.reload(true);
+    }
+  })
+};
+
+function deleteWeakness(id){
+  $.ajax({
+    url: '/powers_weaknesses/deleteWeakness/' + id,
+    type: 'DELETE',
+    success: function(result){
+      window.location.reload(true);
+    }
+  })
+};
 
 function deleteCharacterPower(id){
 	$.ajax({
