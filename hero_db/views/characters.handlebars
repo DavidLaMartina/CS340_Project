@@ -8,11 +8,11 @@
     <fieldset>
         <legend>Characters</legend>
             Character name:
-        <input type="text" name="character_name" required><br>
+        <input type="text" name="character_name" required maxlength="100"><br>
             Real first name:
-        <input type="text" name="real_first_name"><br>
+        <input type="text" name="real_first_name" maxlength="100"><br>
             Real last name:
-        <input type="text" name="real_last_name"><br>
+        <input type="text" name="real_last_name" maxlength="100"><br>
         Select City: <select name="city">
             <option></option>
             {{#each cities}}
@@ -100,11 +100,11 @@
     <fieldset>
         <legend>Equipment</legend>
             Equipment name:
-        <input type="text" name="equipment_name" required><br>
+        <input type="text" name="equipment_name" required maxlength="100"><br>
                 Description (type of equipment)
-                <input type="text" name="description" required><br>
+                <input type="text" name="description" required maxlength="100"><br>
                 Material
-                <input type="text" name="material"><br>
+                <input type="text" name="material" maxlength="100"><br>
                 Owning character:
                 <select name="character_id">
                     {{#each characters}}
@@ -147,7 +147,7 @@
     <fieldset>
         <legend>Cities</legend>
             City name:
-        <input type="text" name="city_name" required>
+        <input type="text" name="city_name" required maxlength="100">
         Real or fictional:
                 <select name="real_city">
                     <option value="TRUE">Real</option>
