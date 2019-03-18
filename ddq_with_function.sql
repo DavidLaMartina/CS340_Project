@@ -1,3 +1,5 @@
+/*This function would be used to impose a constraint in MariaDB versions of 10.21 or higher
+  Our current MariaDB is 10.1.22 */
 DROP FUNCTION IF EXISTS mentorRole;
 DELIMITER $$
 CREATE FUNCTION mentorRole(m INT)RETURNS BOOLEAN
@@ -13,6 +15,8 @@ DELIMITER ;
 /* Data Definition Query for Superhero Database */
 /* Group 16 David LaMartina and Deborah Kretzschmar*/
 
+/* Adding in to ensure dropping one table before another will not
+   result in a foreign key error */
 SET FOREIGN_KEY_CHECKS = 0;
 
 DROP TABLE IF EXISTS character_powers;
@@ -27,6 +31,7 @@ DROP TABLE IF EXISTS Weakness;
 
 SET FOREIGN_KEY_CHECKS = 1;
 
+/* Create the table City */
 CREATE TABLE City(
 city_id int NOT NULL AUTO_INCREMENT,
 city_name varchar(100) NOT NULL,
@@ -34,6 +39,7 @@ real_city boolean NOT NULL DEFAULT true,
 PRIMARY KEY (city_id)
 );
 
+/* Create the table Character. */
 CREATE TABLE `Character`(
  character_id int NOT NULL AUTO_INCREMENT,
  character_name varchar(100) NOT NULL,
@@ -51,6 +57,7 @@ CREATE TABLE `Character`(
 	ON DELETE SET NULL ON UPDATE CASCADE
 );
 
+/* Create the table Power */
 CREATE TABLE `Power` (
   power_id int NOT NULL AUTO_INCREMENT,
   power_type varchar(100) NOT NULL,
@@ -58,6 +65,7 @@ CREATE TABLE `Power` (
   PRIMARY KEY (power_id)
 ) ;
 
+/* Create the table Weakness */
 CREATE TABLE Weakness (
 	weakness_id int NOT NULL AUTO_INCREMENT,
 	weakness_type varchar(100) NOT NULL,
@@ -66,6 +74,7 @@ CREATE TABLE Weakness (
 
 );
 
+/* Create the table Equipment */
 CREATE TABLE Equipment(
  equipment_id int NOT NULL AUTO_INCREMENT,
  equipment_name varchar(100) NOT NULL,
@@ -78,6 +87,7 @@ CREATE TABLE Equipment(
 	ON DELETE CASCADE ON UPDATE CASCADE
 );
 
+/* Create the table character_power */
 CREATE TABLE character_powers(
  id int NOT NULL AUTO_INCREMENT,
  power_id int NOT NULL,
@@ -91,6 +101,9 @@ CREATE TABLE character_powers(
 	ON DELETE CASCADE ON UPDATE CASCADE
 );
 
+/* Create the table character_weakness
+   Since this relation was many to many
+   table cascades on delete or update  */
 CREATE TABLE character_weaknesses(
  id int NOT NULL AUTO_INCREMENT,
  weakness_id int NOT NULL,
@@ -104,6 +117,9 @@ CREATE TABLE character_weaknesses(
 	ON DELETE CASCADE ON UPDATE CASCADE
 );
 
+/* Create the table rival_relationship
+   Since this table was bridge for many to
+   many, it cascades on delete or update */
 CREATE TABLE rival_relationship(
  id int NOT NULL AUTO_INCREMENT,
  rival1_id int NOT NULL,
@@ -117,6 +133,10 @@ CREATE TABLE rival_relationship(
 	ON DELETE CASCADE ON UPDATE CASCADE
 );
 
+/* Create the table friend_relationship
+   Since this table is bridge for many to
+   many relationship, it cascades on delete
+   or update*/
 CREATE TABLE friend_relationship(
  id int NOT NULL AUTO_INCREMENT,
  friend1_id int NOT NULL,
@@ -129,8 +149,8 @@ CREATE TABLE friend_relationship(
 	FOREIGN KEY (friend2_id) REFERENCES `Character`(character_id)
 	ON DELETE CASCADE ON UPDATE CASCADE
 );
-
-/* Seed data */
+/*ADD SAMPLE DATA TO ALL THE TABLES */
+/* Seed data for the table City */
 INSERT INTO City (city_name, real_city) VALUES
   ('Gotham City', 0),
   ('Metropolis', 0),
@@ -150,6 +170,7 @@ INSERT INTO City (city_name, real_city) VALUES
   ('Long Island', 1),
   ('New York City', 1);
 
+/* Insert data into Character table */
 INSERT INTO `Character`(character_name, real_first_name, real_last_name, city, role, mentor_id) VALUES
   ('Batman', 'Bruce', 'Wayne', 1, 1, NULL),
   ('Robin', 'Dick', 'Grayson', 1,1,1),
@@ -165,30 +186,37 @@ INSERT INTO `Character`(character_name, real_first_name, real_last_name, city, r
   ('Wolferine', 'James', 'Howlett', NULL, 1, NULL),
   ('Dare Devil', 'Matt', 'Murdock',3, 1, NULL) ;
 
+/* Insert data into the Power table */
 INSERT INTO Power (power_type, power_magnitude) VALUES
   ('x-ray vision', 10),
   ('super strength', 5),
   ('super strength', 10),
   ('flight', 5),
   ('genius-level intellect', 10);
-
+  
+/* Insert data into the Weakness table */
 INSERT INTO Weakness(weakness_type, weakness_magnitude) VALUES
   ('Kryptonite', 10),
   ("Wonder Woman's Lasso", 10),
   ('Thor letting go of Hammer', 8),
   ('Muramasa Blade', 10),
   ('Noise Pollution', 8);
-
+  
+/* Insert data into the Equipment table */
 INSERT INTO Equipment (equipment_name, description, material, character_id) VALUES
   ('Batmobile', "Batman's heavily armored and weaponized car", 'steel', 1),
   ('Truth Lasso', 'Lasso makes people tell the truth', 'Gold', 7),
   ("Thor's Hammer", 'Hammer', 'Iron', 6),
   ("Wolverine's Skeleton", 'Endoskeleton', 'Adamantium', 12);
-
+  
+/* Insert data into the rival_relationship table */
 INSERT INTO rival_relationship(rival1_id, rival2_id) VALUES (5, 6),(8, 9), (1, 10) ;
 
+/* Insert data into the friend_relationship table */
 INSERT INTO friend_relationship (friend1_id, friend2_id) VALUES (6, 7), (1, 9), (10, 11);
 
+/* Insert seed data into the character_powers table */
 INSERT INTO character_powers (power_id, character_id) VALUES (1, 9), (3, 9), (2, 7), (4, 9), (5, 8);
 
+/* Insert seed data into the character_powers table */
 INSERT INTO character_weaknesses (weakness_id, character_id) VALUES (1, 9), (2, 7), (3, 6), (5, 13);
