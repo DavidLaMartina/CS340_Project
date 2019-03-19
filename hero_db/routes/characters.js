@@ -43,8 +43,6 @@ var express         = require("express"),
           if(context.role != role)
           {
             //the roles were not the same so this character will not be created.
-            console.log("The roles of the character and the mentor are not the same");
-            console.log("This character will not be added");
             //check.value will be set to false
             check.value = false;
             complete();
@@ -55,20 +53,15 @@ var express         = require("express"),
           //first we convert the names to lower case
             if(context.character.toLowerCase() === character_name.toLowerCase()){
               check.value = false;
-              console.log("The character and the mentor names are the same.");
-              console.log("The new character will not be the created");
             }
             else{
               //check.value is set to true because the roles are the same and names are different.
               check.value = true;
-              console.log("Looks like the roles are the same and the names are different");
-              console.log("The entry is valid and the character will be created");
             }
         complete();
       }
     }
     });
-    console.log("I finished the function");
   }
 
   // Display all characters, equipment and cities
@@ -84,7 +77,6 @@ var express         = require("express"),
     function complete(){
       callBackCount++;
       if(callBackCount >= 3){
-        //console.log(context);
         res.render("characters", context);
       }
     }
@@ -104,9 +96,10 @@ var express         = require("express"),
     read.getCharactersByCity(req.params.city, res, mysql, context, complete);
     read.getEquipment(res, mysql, context, complete);
     read.getCities(res, mysql, context, complete);
+    read.getCharactersMin(res, mysql, context, complete);
     function complete(){
       callbackCount++;
-      if(callbackCount >= 3){
+      if(callbackCount >= 4){
         res.render("characters", context);
       }
     }
@@ -126,9 +119,10 @@ var express         = require("express"),
     read.getCharactersWithNameLike(req.params.search_string, res, mysql, context, complete);
     read.getEquipment(res, mysql, context, complete);
     read.getCities(res, mysql, context, complete);
+    read.getCharactersMin(res, mysql, context, complete);
     function complete(){
       callbackCount++;
-      if(callbackCount >= 3){
+      if(callbackCount >= 4){
         res.render("characters", context);
       }
     }
@@ -137,8 +131,6 @@ var express         = require("express"),
   // Create new character
 
   router.post("/addCharacter", function(req, res){
-    //console.log(req.body.character_name);
-    //console.log(req.body);
     var callbackCount = 0;
     //create a check object so that check.value can be passed by reference
     //set check.vaue to false
@@ -198,7 +190,6 @@ var express         = require("express"),
 
   router.delete("/deleteCharacter/:character_id", function(req, res){
     var mysql = req.app.get("mysql");
-    //console.log(req.params);
     var sql = "DELETE FROM `Character` WHERE character_id = ?";
     var inserts = [req.params.character_id];
     sql = mysql.pool.query(sql, inserts, function(error, results, fields){
@@ -226,7 +217,6 @@ var express         = require("express"),
     function complete(){
       callBackCount++;
       if(callBackCount >= 4){
-        //console.log(context);
         res.render("update-character", context);
       }
     }
@@ -235,8 +225,6 @@ var express         = require("express"),
   // Update character entry
 
   router.put("/:character_id", function(req, res){
-    //console.log(req.body.character_name);
-    //console.log(req.body);
     var callbackCount = 0;
     //create a check object so that check.value can be passed by reference
     //set check.vaue to false
@@ -258,7 +246,6 @@ var express         = require("express"),
       function complete(){
         callbackCount++;
         if(callbackCount >= 1 && check.value == false){
-          console.log("I am in complete and the check.value was false");
           //if check.value is false then we just redirect back to the Character page
           // a new character WILL NOT be created.
           req.flash("error", "Characters must have the same role or they cannot be mentors to themselves.");
@@ -285,7 +272,6 @@ var express         = require("express"),
       var inserts = [req.body.character_name, req.body.real_first_name, req.body.real_last_name, req.body.city || null, role, req.body.mentor_id || null, req.params.character_id];
       sql = mysql.pool.query(sql, inserts, function(error, results, fields){
         if(error){
-          //console.log(error);
           res.write(JSON.stringify(error));
           res.end();
         }else{

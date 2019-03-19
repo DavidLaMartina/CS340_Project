@@ -19,7 +19,6 @@ module.exports = function(){
     function complete(){
       callBackCount++;
       if(callBackCount >= 5){
-        console.log(context);
         res.render("powers_weaknesses", context);
       }
     }
@@ -94,7 +93,6 @@ module.exports = function(){
   // Create new power-character relationship
 
   router.post("/addCharacterPower", function(req, res){
-    console.log(req.body);
     var mysql = req.app.get("mysql");
     var sql = "INSERT INTO `character_powers` (power_id, character_id) VALUES (?, ?)";
     var inserts = [req.body.power_id, req.body.character_id];

@@ -11,6 +11,9 @@ SELECT c1.character_id, c1.character_name, c1.real_first_name, c1.real_last_name
   `City` ci ON c1.city = ci.city_id LEFT JOIN
   `Character` c2 ON c1.mentor_id = c2.character_id;
 
+-- Characer - all entries, minimum needed for mentor drop-down (id and name) --
+SELECT character_id, character_name FROM `Character`;
+
 -- Character - entries filtered by city --
 SELECT c1.character_id, c1.character_name, c1.real_first_name, c1.real_last_name, ci.city_name, c1.role, c2.character_name AS `mentor_name` FROM
   `Character` c1 LEFT JOIN

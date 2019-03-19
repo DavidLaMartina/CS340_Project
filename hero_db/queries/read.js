@@ -18,6 +18,22 @@ readObj.getCharacters = function(res, mysql, context, complete){
     });
 }
 
+/* Minimalistic query for character names and ids, used for populating mentor
+    list during search / filter */
+
+readObj.getCharactersMin = function(res, mysql, context, complete){
+  mysql.pool.query(
+    "SELECT character_id, character_name FROM `Character`",
+    function(error, results, fields){
+      if(error){
+        res.write(JSON.stringify(error));
+        res.end();
+      }
+      context.character_names = results;
+      complete();
+    });
+}
+
 // Query to filter characters by city
 
 readObj.getCharactersByCity = function(city_id, res, mysql, context, complete){
