@@ -74,9 +74,10 @@ var express         = require("express"),
     read.getCharacters(res, mysql, context, complete);
     read.getEquipment(res, mysql, context, complete);
     read.getCities(res, mysql, context, complete);
+    read.getCharactersMin(res, mysql, context, complete);
     function complete(){
       callBackCount++;
-      if(callBackCount >= 3){
+      if(callBackCount >= 4){
         res.render("characters", context);
       }
     }
